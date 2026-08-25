@@ -30,9 +30,17 @@ build_cosmos() {
         exit 1
     fi
 
-    # Compress the executables.
-    upx -9 "build/cosmos-$suffix"
-    upx -9 "build/cosmos-launcher-$suffix"
+    # Compress the executables. UPX does not support every architecture
+    # (e.g. riscv64), so only compress for architectures it handles.
+    case "$suffix" in
+        armv6|armv7|386|ppc64le)
+            upx -9 "build/cosmos-$suffix"
+            upx -9 "build/cosmos-launcher-$suffix"
+            ;;
+        *)
+            echo "WARN: UPX does not support $suffix, skipping compression"
+            ;;
+    esac
 
     chmod +x "build/cosmos-$suffix"
     chmod +x "build/cosmos-launcher-$suffix"

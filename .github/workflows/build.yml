@@ -121,9 +121,9 @@ jobs:
       - name: Download and Extract RISC-V Nebula Binary
         if: steps.cache-nebula.outputs.cache-hit != 'true'
         run: |
+            # UPX does not support riscv64, so skip compression here.
             curl -LO https://github.com/slackhq/nebula/releases/download/v1.8.2/nebula-linux-riscv64.tar.gz
             tar -xzvf nebula-linux-riscv64.tar.gz
-            upx -9 nebula
 
       - name: Rename RISC-V Nebula Binary
         if: steps.cache-nebula.outputs.cache-hit != 'true'
