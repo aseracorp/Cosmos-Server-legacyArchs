@@ -70,7 +70,7 @@ func parseMD5File(content string) string {
 func GetLatestVersion(includeBeta bool) (*VersionInfo, error) {
     // Fetch releases from GitHub API
 
-    updateURL := "https://api.github.com/repos/azukaar/cosmos-server/releases"
+    updateURL := "https://api.github.com/repos/aseracorp/Cosmos-Server-legacyArchs/releases"
     if utils.IsPro() {
         updateURL = "https://api.cosmos-cloud.io/proupdates"
     }
@@ -132,10 +132,6 @@ func GetLatestVersion(includeBeta bool) (*VersionInfo, error) {
         if strings.Contains(name, "armv6") && !strings.HasSuffix(name, ".md5") && !strings.Contains(name, "terraform") {
             info.ARMv6URL = asset.DownloadURL
         }
-        // Match ARMv7 binary
-        if strings.Contains(name, "armv7") && !strings.HasSuffix(name, ".md5") && !strings.Contains(name, "terraform") {
-            info.ARMv7URL = asset.DownloadURL
-        }
         // Match MD5 files
         if strings.HasSuffix(name, ".md5") {
             // Fetch MD5 content
@@ -193,7 +189,7 @@ func cleanUpUpdateFiles() {
         os.Remove(dlPath)
     }
 
-    // if cosmos-laumcher.updated exists, rename it to cosmos-launcher
+    // if cosmos-launcher.updated exists, rename it to cosmos-launcher
     updatedPath := currentFolder + "/cosmos-launcher.updated"
     if _, err := os.Stat(updatedPath); err == nil {
         // get old permissions
