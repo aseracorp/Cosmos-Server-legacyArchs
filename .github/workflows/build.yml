@@ -168,7 +168,7 @@ jobs:
           context: .
           file: ./dockerfile
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:armv6
+          tags: ${{ steps.string.outputs.lowercase }}:armv6
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/arm/v6
           build-args: |
