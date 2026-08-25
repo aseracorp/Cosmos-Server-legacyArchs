@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo " ---- Build Cosmos ----"
+echo " ---- Build Cosmos (legacy archs: armv6/armv7) ----"
 
 rm -rf build
 
@@ -24,55 +24,28 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-env GOARCH=arm64 CGO_ENABLED=0 go build -trimpath -ldflags "-s -w" -o build/cosmos-arm64 src/*.go
-if [ $? -ne 0 ]; then
-    exit 1
-fi
-env GOARCH=arm64 CGO_ENABLED=0 go build -trimpath -ldflags "-s -w" -o build/cosmos-launcher-arm64 ./src/launcher/launcher.go ./src/launcher/update.go
-if [ $? -ne 0 ]; then
-    exit 1
-fi
-
-env CGO_ENABLED=0 go build -trimpath -ldflags "-s -w" -o build/cosmos src/*.go
-if [ $? -ne 0 ]; then
-    exit 1
-fi
-env CGO_ENABLED=0 go build -trimpath -ldflags "-s -w" -o build/cosmos-launcher ./src/launcher/launcher.go ./src/launcher/update.go
-if [ $? -ne 0 ]; then
-    exit 1
-fi
-
 # Compress the executable (test performance impact before using in production).
 upx -9 build/cosmos-armv6
 upx -9 build/cosmos-launcher-armv6
 upx -9 build/cosmos-armv7
 upx -9 build/cosmos-launcher-armv7
-upx -9 build/cosmos-arm64
-upx -9 build/cosmos-launcher-arm64
-upx -9 build/cosmos
-upx -9 build/cosmos-launcher
 
 echo " ---- Build complete, copy assets ----"
 
 cp start.sh build/start.sh
-cp restic-arm restic-arm64 restic build/
+cp restic-arm build/
 
 chmod +x build/start.sh
-chmod +x build/cosmos
 chmod +x build/cosmos-armv6
 chmod +x build/cosmos-launcher-armv6
 chmod +x build/cosmos-armv7
 chmod +x build/cosmos-launcher-armv7
-chmod +x build/cosmos-arm64
-chmod +x build/cosmos-launcher-arm64
-chmod +x build/cosmos-launcher
 chmod +x build/restic
 chmod +x build/restic-arm
-chmod +x build/restic-arm64
 
 cp -r static build/
 cp -r GeoLite2-Country.mmdb build/
-cp nebula-armv6-cert nebula-armv7-cert nebula-arm64-cert nebula-cert nebula-armv6 nebula-armv7 nebula-arm64 nebula build/
+cp nebula-armv6-cert nebula-armv7-cert nebula-cert nebula-armv6 nebula-armv7 nebula build/
 cp -r Logo.png build/
 mkdir build/images
 cp client/src/assets/images/icons/cosmos_gray.png build/cosmos_gray.png

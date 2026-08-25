@@ -1,18 +1,23 @@
 # syntax=docker/dockerfile:1
 
-FROM debian:12
+# Legacy-arch Cosmos image (armv6/armv7 only).
+# The base image is injected by the workflow:
+#   - armv7:  debian:bookworm            (has linux/arm/v7)
+#   - armv6:  balenalib/rpi-raspbian:bookworm  (has linux/arm/v6)
+ARG BASE_IMAGE=debian:bookworm
+FROM ${BASE_IMAGE}
+
+# balenalib base images ship a wrapper entrypoint; disable it so the
+# CMD below controls the container process.
+ENTRYPOINT []
 
 ARG TARGETPLATFORM
-ARG BINARY_NAME=cosmos
+ARG BINARY_NAME=cosmos-armv7
 
 # Set BINARY_NAME based on the TARGETPLATFORM
-# NOTE: armv6 is NOT built as a container image because the base image
-# (debian:12) has no linux/arm/v6 variant. armv6 is supported via the
-# standalone zip packages instead.
 RUN case "$TARGETPLATFORM" in \
-    "linux/arm64") BINARY_NAME="cosmos-arm64" ;; \
-    "linux/arm/v7") BINARY_NAME="cosmos-armv7" ;; \
-    *) BINARY_NAME="cosmos" ;; \
+    "linux/arm/v6") BINARY_NAME="cosmos-armv6" ;; \
+    *) BINARY_NAME="cosmos-armv7" ;; \
     esac && echo $BINARY_NAME > /binary_name
 
 # This is just to log the platforms (optional)
@@ -31,7 +36,7 @@ RUN apt-get update \
 WORKDIR /app
 
 # Copy the respective binary based on the BINARY_NAME
-COPY build/cosmos build/cosmos-arm64 build/cosmos-armv7 ./
+COPY build/cosmos-armv6 build/cosmos-armv7 ./
 
 # Copy other resources
 COPY build/* ./

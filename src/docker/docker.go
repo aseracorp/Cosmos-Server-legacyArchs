@@ -15,7 +15,6 @@ import (
 	"sync"
 	"sync/atomic"
 	"strconv"
-	"runtime"
 	"github.com/azukaar/cosmos-server/src/utils" 
 	dockerConfig "github.com/docker/cli/cli/config"
 
@@ -646,11 +645,6 @@ func SelfAction(action string) error {
 	containerName := os.Getenv("HOSTNAME")
 
 	version := "latest"
-
-	// if arm
-	if runtime.GOARCH == "arm64" {
-		version = "latest-arm64"
-	}
 	
 	service := DockerServiceCreateRequest{
 		Services: map[string]ContainerCreateRequestContainer {},

@@ -29,8 +29,8 @@
 				"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/HomeAssistant/icon.png",
 				"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/HomeAssistant/cosmos-compose.json",
 				"supported_architectures": [
-					"amd64",
-					"arm64"
+					"armv7",
+					"armv6"
 				]
 			},
 			{
@@ -88,8 +88,8 @@
 				"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Jellyfin/icon.png",
 				"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Jellyfin/cosmos-compose.json",
 				"supported_architectures": [
-					"amd64",
-					"arm64"
+					"armv7",
+					"armv6"
 				]
 			},
 			{
@@ -199,8 +199,8 @@
 				"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Plurality/icon.png",
 				"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Plurality/cosmos-compose.json",
 				"supported_architectures": [
-					"amd64",
-					"arm64"
+					"armv7",
+					"armv6"
 				]
 			},
 			{
@@ -230,8 +230,8 @@
 				"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Nextcloud/icon.png",
 				"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Nextcloud/cosmos-compose.json",
 				"supported_architectures": [
-					"amd64",
-					"arm64"
+					"armv7",
+					"armv6"
 				]
 			}
 		],
@@ -255,9 +255,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/2FAuth/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/2FAuth/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"386",
-						"arm64",
+						"armv6",
 						"arm"
 					]
 				},
@@ -280,9 +280,9 @@
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/AdGuardHome/docker-compose.yml",
 					"supported_architectures": [
 						"386",
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64",
+						"armv6",
 						"ppc64le"
 					]
 				},
@@ -304,9 +304,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Adminer/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Adminer/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64"
+						"armv6"
 					]
 				},
 				{
@@ -325,9 +325,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Alist/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Alist/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64"
+						"armv6"
 					]
 				},
 				{
@@ -348,7 +348,7 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Anaconda3/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Anaconda3/docker-compose.yml",
 					"supported_architectures": [
-						"amd64"
+						"armv7"
 					]
 				},
 				{
@@ -367,9 +367,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Autobrr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Autobrr/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64"
+						"armv6"
 					]
 				},
 				{
@@ -391,9 +391,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Bazarr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Bazarr/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64"
+						"armv6"
 					]
 				},
 				{
@@ -414,8 +414,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Calibre-web/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Calibre-web/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -435,8 +435,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/ChatGPT-Next-Web/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/ChatGPT-Next-Web/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -455,8 +455,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/ChatbotUI/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/ChatbotUI/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -477,8 +477,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/CloudBeaver/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/CloudBeaver/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -499,9 +499,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Cloudflared/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Cloudflared/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64"
+						"armv6"
 					]
 				},
 				{
@@ -526,9 +526,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Crafty/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Crafty/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64"
+						"armv6"
 					]
 				},
 				{
@@ -548,8 +548,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Databag/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Databag/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -569,9 +569,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Ddns-go/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Ddns-go/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64"
+						"armv6"
 					]
 				},
 				{
@@ -593,8 +593,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Deluge/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Deluge/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -615,8 +615,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Duplicati/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Duplicati/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -636,8 +636,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/ESPHome/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/ESPHome/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"arm"
 					]
 				},
@@ -659,8 +659,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Emby/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Emby/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -681,8 +681,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Embystat/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Embystat/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -701,8 +701,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/EmulatorJS/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/EmulatorJS/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -723,8 +723,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/FileBrowser/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/FileBrowser/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"arm"
 					]
 				},
@@ -744,8 +744,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Filedrop/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Filedrop/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -769,8 +769,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Gitea/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Gitea/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -791,8 +791,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Grafana/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Grafana/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -811,7 +811,7 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Handbrake/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Handbrake/docker-compose.yml",
 					"supported_architectures": [
-						"amd64"
+						"armv7"
 					]
 				},
 				{
@@ -836,9 +836,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/HoloPlay/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/HoloPlay/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"386",
-						"arm64",
+						"armv6",
 						"arm"
 					]
 				},
@@ -861,8 +861,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/HomeAssistant/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/HomeAssistant/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -882,9 +882,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Homebridge/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Homebridge/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64"
+						"armv6"
 					]
 				},
 				{
@@ -904,8 +904,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/JDownloader2/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/JDownloader2/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -926,8 +926,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Jackett/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Jackett/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -950,8 +950,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Jellyfin/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Jellyfin/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -970,8 +970,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/LabelStudio/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/LabelStudio/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -992,8 +992,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Lazylibrarian/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Lazylibrarian/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1014,8 +1014,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Lidarr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Lidarr/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1036,9 +1036,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Lucky/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Lucky/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64"
+						"armv6"
 					]
 				},
 				{
@@ -1055,8 +1055,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/MariaDB/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/MariaDB/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1077,8 +1077,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/MediaFetchPro/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/MediaFetchPro/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1102,8 +1102,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Medusa/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Medusa/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"arm"
 					]
 				},
@@ -1124,8 +1124,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Memos/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Memos/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"arm"
 					]
 				},
@@ -1145,7 +1145,7 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/MineOS/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/MineOS/docker-compose.yml",
 					"supported_architectures": [
-						"amd64"
+						"armv7"
 					]
 				},
 				{
@@ -1162,8 +1162,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Mongo/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Mongo/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1180,8 +1180,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/MongoDB4/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/MongoDB4/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1202,7 +1202,7 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Motioneye/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Motioneye/docker-compose.yml",
 					"supported_architectures": [
-						"amd64"
+						"armv7"
 					]
 				},
 				{
@@ -1223,8 +1223,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/MySpeed/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/MySpeed/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"arm"
 					]
 				},
@@ -1247,8 +1247,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Mylar3/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Mylar3/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1269,8 +1269,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/N8n/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/N8n/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"arm"
 					]
 				},
@@ -1291,8 +1291,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Navidrome/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Navidrome/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"arm"
 					]
 				},
@@ -1314,8 +1314,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Netdata/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Netdata/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"arm"
 					]
 				},
@@ -1337,9 +1337,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Nextcloud/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Nextcloud/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64",
+						"armv6",
 						"386",
 						"mips64le",
 						"ppc64le",
@@ -1364,8 +1364,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/NginxProxyManager/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/NginxProxyManager/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"arm"
 					]
 				},
@@ -1387,8 +1387,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Node-RED/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Node-RED/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"s390x",
 						"arm"
 					]
@@ -1412,9 +1412,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Nzbget/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Nzbget/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64"
+						"armv6"
 					]
 				},
 				{
@@ -1435,8 +1435,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Ombi/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Ombi/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1458,8 +1458,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/OpenHAB/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/OpenHAB/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"arm"
 					]
 				},
@@ -1481,8 +1481,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/OpenSpeedTest/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/OpenSpeedTest/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"ppc64le",
 						"s390x",
 						"386",
@@ -1507,8 +1507,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Overseerr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Overseerr/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1529,9 +1529,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Petio/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Petio/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64"
+						"armv6"
 					]
 				},
 				{
@@ -1552,8 +1552,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/PhotoPrism/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/PhotoPrism/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1574,8 +1574,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Pihole/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Pihole/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"386",
 						"arm"
 					]
@@ -1598,8 +1598,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Plex/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Plex/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1619,9 +1619,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Portainer/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Portainer/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64"
+						"armv6"
 					]
 				},
 				{
@@ -1638,9 +1638,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/PostgreSQL/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/PostgreSQL/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64"
+						"armv6"
 					]
 				},
 				{
@@ -1660,8 +1660,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Prowlarr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Prowlarr/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1682,8 +1682,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/PyLoad/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/PyLoad/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1706,8 +1706,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Radarr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Radarr/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1729,8 +1729,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Readarr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Readarr/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1749,8 +1749,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Resilio-sync/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Resilio-sync/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1775,8 +1775,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Sabnzbd/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Sabnzbd/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1800,8 +1800,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Sickchill/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Sickchill/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1822,8 +1822,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Siyuan-Note/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Siyuan-Note/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"arm"
 					]
 				},
@@ -1847,8 +1847,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Smokeping/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Smokeping/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1867,8 +1867,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Snapdrop/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Snapdrop/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1890,8 +1890,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Sonarr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Sonarr/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1912,7 +1912,7 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/StableDiffusionWebUI/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/StableDiffusionWebUI/docker-compose.yml",
 					"supported_architectures": [
-						"amd64"
+						"armv7"
 					]
 				},
 				{
@@ -1933,8 +1933,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Stremio/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Stremio/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1951,8 +1951,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Syncthing/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Syncthing/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1974,8 +1974,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Tautulli/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Tautulli/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -1992,8 +1992,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Threadfin/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Threadfin/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"arm"
 					]
 				},
@@ -2015,8 +2015,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Transmission/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Transmission/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2033,8 +2033,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Twingate/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Twingate/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"arm"
 					]
 				},
@@ -2055,8 +2055,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Unifi-Network-Application/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Unifi-Network-Application/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2077,8 +2077,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Unifi-controller/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Unifi-controller/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2101,8 +2101,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/UptimeKuma/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/UptimeKuma/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"arm"
 					]
 				},
@@ -2124,9 +2124,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/Vaultwarden/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/Vaultwarden/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64"
+						"armv6"
 					]
 				},
 				{
@@ -2149,7 +2149,7 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/VoceChat/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/VoceChat/docker-compose.yml",
 					"supported_architectures": [
-						"amd64"
+						"armv7"
 					]
 				},
 				{
@@ -2170,9 +2170,9 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/WireGuardEasy/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/WireGuardEasy/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64"
+						"armv6"
 					]
 				},
 				{
@@ -2192,8 +2192,8 @@
 					"icon": "https://azukaar.github.io/cosmos-casaos-store/servapps/qBittorrent/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-casaos-store/servapps/qBittorrent/docker-compose.yml",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				}
 			],
@@ -2220,8 +2220,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/2fauth/logo/ezgif-2-01616207b8.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/2fauth/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2245,7 +2245,7 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/ActiveWorkflow/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/ActiveWorkflow/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64"
+						"armv7"
 					]
 				},
 				{
@@ -2269,8 +2269,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Activepieces/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Activepieces/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2295,7 +2295,7 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Acunetix/logo/0_lJTkWI1TOFW-dvkY.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Acunetix/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64"
+						"armv7"
 					]
 				},
 				{
@@ -2321,8 +2321,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Ansible-semaphore/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Ansible-semaphore/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2347,8 +2347,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Answer-apache/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Answer-apache/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2373,8 +2373,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Appsmith/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Appsmith/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2400,8 +2400,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/ArangoDB/logo/arangodb_cloud-database-management-systems_1651266319025.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/ArangoDB/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2426,8 +2426,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/ArchiveBox/logo/archive_box_icon_149534.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/ArchiveBox/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2453,8 +2453,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Bin-pastebin/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Bin-pastebin/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2480,8 +2480,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Browserless/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Browserless/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2506,8 +2506,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/CTFD/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/CTFD/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2532,8 +2532,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Changedetection/logo/channels4_profile.jpg",
 					"compose": "https://cosmos.manhtuong.net/servapps/Changedetection/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2557,7 +2557,7 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Chatwoot/logo/1233.webp",
 					"compose": "https://cosmos.manhtuong.net/servapps/Chatwoot/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64"
+						"armv7"
 					]
 				},
 				{
@@ -2582,8 +2582,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Chromium/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Chromium/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2608,8 +2608,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Cloudbeaver/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Cloudbeaver/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2634,8 +2634,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/CockroachDB/logo/cockroachdb-logo-png-transparent.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/CockroachDB/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2659,8 +2659,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Coder/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Coder/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2687,8 +2687,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Confluence/logo/Atlassian-Logo-2010s1-500x339.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Confluence/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2713,7 +2713,7 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Crawlab/logo/cover.jpg",
 					"compose": "https://cosmos.manhtuong.net/servapps/Crawlab/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64"
+						"armv7"
 					]
 				},
 				{
@@ -2738,8 +2738,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/DiskStation/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/DiskStation/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2763,8 +2763,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Docat/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Docat/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2789,7 +2789,7 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Doku/logo/doku7384.jpg",
 					"compose": "https://cosmos.manhtuong.net/servapps/Doku/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm"
 					]
 				},
@@ -2817,8 +2817,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Fastapi/logo/fastapi.svg",
 					"compose": "https://cosmos.manhtuong.net/servapps/Fastapi/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2843,8 +2843,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/FileGator/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/FileGator/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2868,8 +2868,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/FileShelter/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/FileShelter/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2895,8 +2895,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/FireFox/logo/logo.eb1324e44442.svg",
 					"compose": "https://cosmos.manhtuong.net/servapps/FireFox/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2921,7 +2921,7 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Flipt/logo/0_lJTkWI1TOFW-dvkY.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Flipt/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64"
+						"armv7"
 					]
 				},
 				{
@@ -2947,8 +2947,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Forgejo/logo/73144-c883a242dec5299fbc06bbe3ee71d8c6.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Forgejo/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -2974,8 +2974,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Hasty-Paste/logo/icon.svg",
 					"compose": "https://cosmos.manhtuong.net/servapps/Hasty-Paste/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3001,8 +3001,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Hasura/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Hasura/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3025,8 +3025,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Hedgedoc/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Hedgedoc/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3051,8 +3051,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Hoppscotch/logo/logo.svg",
 					"compose": "https://cosmos.manhtuong.net/servapps/Hoppscotch/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3079,7 +3079,7 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Invidious/logo/invidious-colored-vector.svg",
 					"compose": "https://cosmos.manhtuong.net/servapps/Invidious/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64"
+						"armv7"
 					]
 				},
 				{
@@ -3103,8 +3103,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Jira/logo/Atlassian-Logo-2010s1-500x339.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Jira/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3125,8 +3125,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Koel/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Koel/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3153,8 +3153,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Listmonk/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Listmonk/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3178,8 +3178,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Lynx/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Lynx/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3203,8 +3203,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Mattermost/logo/numix-circle-for-windows-mattermost.jpg",
 					"compose": "https://cosmos.manhtuong.net/servapps/Mattermost/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3230,8 +3230,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/MinIO/logo/minio-logo.jpg",
 					"compose": "https://cosmos.manhtuong.net/servapps/MinIO/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3258,8 +3258,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/NocoDB/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/NocoDB/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3287,8 +3287,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Onedev/logo/logo.svg",
 					"compose": "https://cosmos.manhtuong.net/servapps/Onedev/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3314,8 +3314,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Openobserve/logo/Wp6HKCpz_400x400.jpg",
 					"compose": "https://cosmos.manhtuong.net/servapps/Openobserve/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3340,8 +3340,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Openvas/logo/0_lJTkWI1TOFW-dvkY.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Openvas/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3364,8 +3364,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/PasswordPusher/logo/logo-transparent-sm-bare-93087ef5826.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/PasswordPusher/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3390,8 +3390,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Piwigo/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Piwigo/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3416,8 +3416,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Plausible/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Plausible/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3442,8 +3442,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Pocketbase/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Pocketbase/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3470,8 +3470,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/PrivateBin/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/PrivateBin/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3495,8 +3495,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Qbittorrent/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Qbittorrent/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3521,8 +3521,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/RabbitMQ/logo/logoimage.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/RabbitMQ/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3549,8 +3549,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Seekr/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Seekr/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3574,8 +3574,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/ShareX/logo/zipline-desktop.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/ShareX/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3600,7 +3600,7 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Social-Analyzer/logo/logo.jpg",
 					"compose": "https://cosmos.manhtuong.net/servapps/Social-Analyzer/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm"
 					]
 				},
@@ -3626,8 +3626,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Surrealdb/logo/1_0WNVU1HfJvNIGwkhG274Qw.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Surrealdb/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3651,8 +3651,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Tasks.md/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Tasks.md/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3677,8 +3677,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/TeamMapper/logo/teammapper-logo.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/TeamMapper/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3702,8 +3702,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Teldrive/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Teldrive/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3729,8 +3729,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Thelounge/logo/TL_Grey&Yellow_Vertical_logotype_Transparent_Bg.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Thelounge/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3755,8 +3755,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Thingsboard/logo/301520891_569750594942636_5308830562915468264_n.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Thingsboard/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3780,8 +3780,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/TinyFileManager/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/TinyFileManager/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3806,8 +3806,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Trilium/logo/154-1540944_noun-project-trilium-notes-hd-png-download.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Trilium/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3832,8 +3832,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Umami/logo/_u-7zTZM_400x400.jpg",
 					"compose": "https://cosmos.manhtuong.net/servapps/Umami/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3856,8 +3856,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/WG-Easy/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/WG-Easy/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3882,8 +3882,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/WatchState/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/WatchState/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3908,8 +3908,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/WebGoat/logo/OWASP-300x298.webp",
 					"compose": "https://cosmos.manhtuong.net/servapps/WebGoat/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3935,8 +3935,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Wikijs/logo/wikijs-full-2021-768t-svg-yOi8.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Wikijs/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -3959,8 +3959,8 @@
 					"icon": "https://cosmos.manhtuong.net/servapps/Yopass/logo/icon.png",
 					"compose": "https://cosmos.manhtuong.net/servapps/Yopass/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				}
 			],
@@ -3985,8 +3985,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Actual-server/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Actual-server/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4015,8 +4015,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Audacity/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Audacity/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4045,8 +4045,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Audiobookshelf/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Audiobookshelf/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4068,8 +4068,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Baserow/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Baserow/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4103,8 +4103,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Bazarr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Bazarr/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4134,8 +4134,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Blender/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Blender/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4167,8 +4167,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Cachet/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Cachet/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4197,8 +4197,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Calibre/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Calibre/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4226,8 +4226,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Calibre-Web/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Calibre-Web/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4260,8 +4260,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/CodeServer/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/CodeServer/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4285,8 +4285,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Cube-js/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Cube-js/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4316,9 +4316,9 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Dashy/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Dashy/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm32v7",
-						"arm64v8"
+						"armv6"
 					]
 				},
 				{
@@ -4350,8 +4350,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Deluge/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Deluge/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4372,8 +4372,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Discourse/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Discourse/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4408,8 +4408,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/DockerMailServer/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/DockerMailServer/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4431,8 +4431,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Dokuwiki/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Dokuwiki/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4454,8 +4454,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Dozzle/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Dozzle/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4480,8 +4480,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Drone/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Drone/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4504,8 +4504,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Drupal/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Drupal/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4537,8 +4537,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Duplicati/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Duplicati/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4563,8 +4563,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/EMQX/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/EMQX/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4592,8 +4592,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/ESPHome/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/ESPHome/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4651,8 +4651,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Emby/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Emby/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4685,8 +4685,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Emulator-JS/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Emulator-JS/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4711,8 +4711,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Fasten/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Fasten/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4744,8 +4744,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Filebrowser/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Filebrowser/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4773,8 +4773,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Firefly-III/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Firefly-III/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4804,8 +4804,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Firefox/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Firefox/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4829,8 +4829,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Flarum/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Flarum/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4861,8 +4861,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/FreshRSS/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/FreshRSS/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4886,8 +4886,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Frigate-NVR/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Frigate-NVR/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4908,8 +4908,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Ghost/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Ghost/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -4937,8 +4937,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Gitea/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Gitea/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 			{
@@ -5048,8 +5048,8 @@
 				"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Plurality/icon.png",
 				"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Plurality/cosmos-compose.json",
 				"supported_architectures": [
-					"amd64",
-					"arm64"
+					"armv7",
+					"armv6"
 				]
 			},
 				{
@@ -5081,8 +5081,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Grav/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Grav/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5115,8 +5115,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Grocy/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Grocy/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5138,7 +5138,7 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Handbrake/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Handbrake/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64"
+						"armv7"
 					]
 				},
 				{
@@ -5171,8 +5171,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Heimdall/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Heimdall/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5204,8 +5204,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Homarr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Homarr/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5236,8 +5236,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/HomeAssistant/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/HomeAssistant/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5264,8 +5264,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Homebox/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Homebox/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5296,8 +5296,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Homepage/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Homepage/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5322,8 +5322,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/IT-Tools/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/IT-Tools/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5355,8 +5355,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Immich/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Immich/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5414,8 +5414,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Jellyfin/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Jellyfin/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5453,8 +5453,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Jellyseerr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Jellyseerr/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5487,8 +5487,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Jellystat/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Jellystat/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5514,8 +5514,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Jenkins/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Jenkins/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5547,7 +5547,7 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Joplin/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Joplin/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64"
+						"armv7"
 					]
 				},
 				{
@@ -5585,8 +5585,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Kavita/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Kavita/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5609,8 +5609,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Keycloak/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Keycloak/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5635,8 +5635,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Kitchenowl/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Kitchenowl/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5660,8 +5660,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/LSDVR/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/LSDVR/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5694,8 +5694,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Lemmy/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Lemmy/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5735,8 +5735,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Lidarr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Lidarr/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5758,7 +5758,7 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/MKVToolNix/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/MKVToolNix/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64"
+						"armv7"
 					]
 				},
 				{
@@ -5779,8 +5779,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Manyfold/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Manyfold/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5813,8 +5813,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Mastodon/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Mastodon/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5838,8 +5838,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/MeTube/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/MeTube/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5864,8 +5864,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Mealie/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Mealie/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5886,8 +5886,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/MediaWiki/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/MediaWiki/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5911,8 +5911,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Minecraft-Bedrock-Server/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Minecraft-Bedrock-Server/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5948,9 +5948,9 @@
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Minecraft-Server/cosmos-compose.json",
 					"supported_architectures": [
 						"x86",
-						"amd64",
+						"armv7",
 						"arm",
-						"arm64"
+						"armv6"
 					]
 				},
 				{
@@ -5971,8 +5971,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Monica/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Monica/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -5996,8 +5996,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Moodle/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Moodle/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6019,8 +6019,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/N8n/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/N8n/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6052,8 +6052,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/NZBGet/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/NZBGet/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6085,8 +6085,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Navidrome/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Navidrome/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6116,8 +6116,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Nextcloud/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Nextcloud/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6139,8 +6139,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Notifiarr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Notifiarr/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6163,8 +6163,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Odoo/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Odoo/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6190,7 +6190,7 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/OhMyForm/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/OhMyForm/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64"
+						"armv7"
 					]
 				},
 				{
@@ -6222,8 +6222,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Ombi/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Ombi/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6246,8 +6246,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Opencart/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Opencart/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6267,8 +6267,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Openspeedtest/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Openspeedtest/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6303,8 +6303,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Overseerr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Overseerr/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6331,8 +6331,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Paperless-ngx/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Paperless-ngx/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6363,8 +6363,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Photoprism/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Photoprism/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6384,8 +6384,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Pingvin-share/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Pingvin-share/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6412,8 +6412,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Piped/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Piped/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6468,8 +6468,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Plex/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Plex/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6500,8 +6500,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Prowlarr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Prowlarr/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6526,8 +6526,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/RSS-Bridge/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/RSS-Bridge/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6564,8 +6564,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Radarr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Radarr/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6596,8 +6596,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Readarr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Readarr/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6635,8 +6635,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Ryot/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Ryot/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6666,8 +6666,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Sabnzbd/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Sabnzbd/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6690,8 +6690,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/SearXNG/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/SearXNG/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6715,8 +6715,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Sonarqube/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Sonarqube/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6752,8 +6752,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Sonarr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Sonarr/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6779,8 +6779,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Stirling-PDF/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Stirling-PDF/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6802,8 +6802,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Suitecrm/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Suitecrm/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6829,8 +6829,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Syncthing/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Syncthing/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6856,8 +6856,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Tandoor/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Tandoor/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6914,8 +6914,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Tautulli/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Tautulli/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -6948,8 +6948,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Threadfin/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Threadfin/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64",
+						"armv7",
+						"armv6",
 						"arm/v7",
 						"arm/v8"
 					]
@@ -6983,8 +6983,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Transmission/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Transmission/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -7020,9 +7020,9 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Unmanic/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Unmanic/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
+						"armv7",
 						"arm7",
-						"arm64"
+						"armv6"
 					]
 				},
 				{
@@ -7054,8 +7054,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/UptimeKuma/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/UptimeKuma/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -7084,8 +7084,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Vaultwarden/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Vaultwarden/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -7106,8 +7106,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Webtop/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Webtop/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -7134,8 +7134,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/Wordpress/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/Wordpress/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -7162,8 +7162,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/changedetection.io/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/changedetection.io/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -7187,8 +7187,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/memos/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/memos/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -7211,8 +7211,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/ntfy/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/ntfy/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -7236,8 +7236,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/phpbb/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/phpbb/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -7261,8 +7261,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/redmine/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/redmine/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -7283,8 +7283,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/speedtest-tracker/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/speedtest-tracker/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -7311,8 +7311,8 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/unpackerr/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/unpackerr/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64",
-						"arm64"
+						"armv7",
+						"armv6"
 					]
 				},
 				{
@@ -7346,7 +7346,7 @@
 					"icon": "https://azukaar.github.io/cosmos-servapps-official/servapps/xTeVe/icon.png",
 					"compose": "https://azukaar.github.io/cosmos-servapps-official/servapps/xTeVe/cosmos-compose.json",
 					"supported_architectures": [
-						"amd64"
+						"armv7"
 					]
 				}
 			]

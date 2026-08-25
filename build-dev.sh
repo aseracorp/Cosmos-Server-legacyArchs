@@ -4,7 +4,7 @@ echo " ---- Build Cosmos ----"
 
 # Set target architecture for ARM64
 # export GOOS=linux
-# export GOARCH=arm64
+# export GOARCH=arm GOARM=7
 
 rm -rf build
 

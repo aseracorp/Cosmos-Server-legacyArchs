@@ -18,7 +18,7 @@ env:
   MAINTAINER_EMAIL: "cosmoscloudsup@gmail.com"
 
 jobs:
-  build-and-push-image:
+  build-and-release:
     runs-on: ubuntu-latest
 
     permissions:
@@ -39,7 +39,7 @@ jobs:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v4
         with:
-          platforms: 'amd64,arm64,arm'
+          platforms: 'arm'
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -106,26 +106,6 @@ jobs:
             mv nebula nebula-armv6
             mv nebula-cert nebula-armv6-cert
 
-      - name: Download and Extract ARM64 Nebula Binary
-        if: steps.cache-nebula.outputs.cache-hit != 'true'
-        run: |
-            curl -LO https://github.com/slackhq/nebula/releases/download/v1.8.2/nebula-linux-arm64.tar.gz
-            tar -xzvf nebula-linux-arm64.tar.gz
-            upx -9 nebula
-
-      - name: Rename ARM64 Nebula Binary
-        if: steps.cache-nebula.outputs.cache-hit != 'true'
-        run: |
-            mv nebula nebula-arm64
-            mv nebula-cert nebula-arm64-cert
-
-      - name: Download and Extract Nebula Binary
-        if: steps.cache-nebula.outputs.cache-hit != 'true'
-        run: |
-            curl -LO https://github.com/slackhq/nebula/releases/download/v1.8.2/nebula-linux-amd64.tar.gz
-            tar -xzvf nebula-linux-amd64.tar.gz
-            upx -9 nebula
-
       - name: cache restic Binary
         id: cache-restic
         uses: actions/cache@v6
@@ -140,27 +120,13 @@ jobs:
             bunzip2 restic_0.17.3_linux_arm.bz2
             mv restic_0.17.3_linux_arm restic-arm
 
-      - name: Download and Extract ARM64 Restic binary
-        if: steps.cache-restic.outputs.cache-hit != 'true'
-        run: |
-            curl -LO https://github.com/restic/restic/releases/download/v0.17.3/restic_0.17.3_linux_arm64.bz2
-            bunzip2 restic_0.17.3_linux_arm64.bz2
-            mv restic_0.17.3_linux_arm64 restic-arm64
-
-      - name: Download and Extract Restic binary
-        if: steps.cache-restic.outputs.cache-hit != 'true'
-        run: |
-            curl -LO https://github.com/restic/restic/releases/download/v0.17.3/restic_0.17.3_linux_amd64.bz2
-            bunzip2 restic_0.17.3_linux_amd64.bz2
-            mv restic_0.17.3_linux_amd64 restic
-
       - name: Build UI
         run: npm run client-build
 
       - name: Build
         run: sh build.sh
 
-      - name: Log in to the Container registry
+      - name: Login to GitHub Container Registry
         uses: docker/login-action@v4
         with:
           registry: ${{ env.REGISTRY }}
@@ -181,7 +147,7 @@ jobs:
         with:
           string: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           
-      - name: Build and push Docker image
+      - name: Build and push Docker image (armv7)
         id: push
         uses: docker/build-push-action@v7
         with:
@@ -190,25 +156,32 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/arm/v7
+          build-args: |
+            BASE_IMAGE=debian:bookworm
           cache-from: type=registry,ref=${{ steps.string.outputs.lowercase }}:dockercache
           cache-to: type=registry,ref=${{ steps.string.outputs.lowercase }}:dockercache,mode=max,image-manifest=true
-      
+
+      - name: Build and push Docker image (armv6)
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: ./dockerfile
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:armv6
+          labels: ${{ steps.meta.outputs.labels }}
+          platforms: linux/arm/v6
+          build-args: |
+            BASE_IMAGE=balenalib/rpi-raspbian:bookworm
+          cache-from: type=registry,ref=${{ steps.string.outputs.lowercase }}:dockercache
+          cache-to: type=registry,ref=${{ steps.string.outputs.lowercase }}:dockercache,mode=max,image-manifest=true
+
       - name: Generate artifact attestation
         uses: actions/attest-build-provenance@v4
         with:
           subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
-
-      - name: Prepare package structure       
-        run: |
-            mkdir -p ${{ env.PKG_NAME }}-${{ env.VERSION }}
-            cp -r build/* ${{ env.PKG_NAME }}-${{ env.VERSION }}/
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}/cosmos-launcher-arm*
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}/cosmos-arm*
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}/nebula-arm*
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}/restic-arm*
 
       - name: Prepare ARMv7 package structure      
         run: |
@@ -221,10 +194,8 @@ jobs:
             rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/nebula-cert
             mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/nebula-armv7 ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/nebula
             mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/nebula-armv7-cert ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/nebula-cert
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/cosmos-launcher-arm64
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/cosmos-arm64
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/nebula-arm64*
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/restic-arm64
+            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/nebula-armv6*
+            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/restic-arm*
 
       - name: Prepare ARMv6 package structure      
         run: |
@@ -232,45 +203,21 @@ jobs:
             cp -r build/* ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/
             mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/cosmos-armv6 ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/cosmos
             mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/cosmos-launcher-armv6 ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/cosmos-launcher
-            cp ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/restic-arm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/restic
+            mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/restic-arm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/restic
             rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/nebula
             rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/nebula-cert
             mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/nebula-armv6 ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/nebula
             mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/nebula-armv6-cert ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/nebula-cert
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/cosmos-launcher-arm*
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/cosmos-arm*
             rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/nebula-armv7*
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/nebula-arm64*
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/restic-arm64
-
-      - name: Prepare ARM64 package structure      
-        run: |
-            mkdir -p ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64
-            cp -r build/* ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/
-            mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/cosmos-arm64 ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/cosmos
-            mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/cosmos-launcher-arm64 ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/cosmos-launcher
-            mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/restic-arm64 ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/restic
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/nebula
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/nebula-cert
-            mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/nebula-arm64 ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/nebula
-            mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/nebula-arm64-cert ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/nebula-cert
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/cosmos-launcher-arm*
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/cosmos-arm*
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/nebula-armv6*
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/nebula-armv7*
-            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64/restic-arm*
+            rm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/restic-arm*
 
       - name: Create .zip packages       
         run: |
-            zip -r ${{ env.PKG_NAME }}-${{ env.VERSION }}-amd64.zip ${{ env.PKG_NAME }}-${{ env.VERSION }}
-            zip -r ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64.zip ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64
             zip -r ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7.zip ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7
             zip -r ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6.zip ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6
 
       - name: Generate MD5 hashes    
         run: |
-            md5sum ${{ env.PKG_NAME }}-${{ env.VERSION }}-amd64.zip > ${{ env.PKG_NAME }}-${{ env.VERSION }}-amd64.zip.md5
-            md5sum ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64.zip > ${{ env.PKG_NAME }}-${{ env.VERSION }}-arm64.zip.md5
             md5sum ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7.zip > ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7.zip.md5
             md5sum ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6.zip > ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6.zip.md5
 

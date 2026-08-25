@@ -50,7 +50,7 @@ func unzip(src string, dest string) error {
         // Skip the root folder from the file path
         fpath := filepath.Join(dest, strings.TrimPrefix(f.Name, rootFolder))
 
-        // Check if the file matches "cosmos-launcher" or "cosmos-launcher-arm64" for renaming
+        // Check if the file matches "cosmos-launcher" or "cosmos-launcher-armv7" for renaming
         baseName := filepath.Base(fpath)
 				
 				if baseName == "start.sh" {
@@ -58,7 +58,7 @@ func unzip(src string, dest string) error {
 					continue
 				}
 
-        if baseName == "cosmos-launcher" || baseName == "cosmos-launcher-arm64" {
+        if baseName == "cosmos-launcher" || baseName == "cosmos-launcher-armv7" {
             fpath = filepath.Join(filepath.Dir(fpath), baseName+".updated")
         }
 

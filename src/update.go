@@ -8,7 +8,6 @@ import (
     "net/http"
     "path/filepath"
     "bufio"
-    "runtime"
     "strings"
     "syscall"
 
@@ -49,12 +48,8 @@ type Release struct {
 
 type VersionInfo struct {
     Version     string
-    AMDURL      string
-    ARM64URL    string
     ARMv7URL    string
     ARMv6URL    string
-    AMDMD5      string
-    ARM64MD5    string
     ARMv7MD5    string
     ARMv6MD5    string
 }
@@ -129,14 +124,6 @@ func GetLatestVersion(includeBeta bool) (*VersionInfo, error) {
     for _, asset := range latestRelease.Assets {
         name := strings.ToLower(asset.Name)
 
-        // Match AMD64 binary
-        if strings.Contains(name, "amd64") && !strings.HasSuffix(name, ".md5") && !strings.Contains(name, "terraform") {
-            info.AMDURL = asset.DownloadURL
-        }
-        // Match ARM64 binary
-        if strings.Contains(name, "arm64") && !strings.HasSuffix(name, ".md5") && !strings.Contains(name, "terraform") {
-            info.ARM64URL = asset.DownloadURL
-        }
         // Match ARMv7 binary
         if strings.Contains(name, "armv7") && !strings.HasSuffix(name, ".md5") && !strings.Contains(name, "terraform") {
             info.ARMv7URL = asset.DownloadURL
@@ -144,6 +131,10 @@ func GetLatestVersion(includeBeta bool) (*VersionInfo, error) {
         // Match ARMv6 binary
         if strings.Contains(name, "armv6") && !strings.HasSuffix(name, ".md5") && !strings.Contains(name, "terraform") {
             info.ARMv6URL = asset.DownloadURL
+        }
+        // Match ARMv7 binary
+        if strings.Contains(name, "armv7") && !strings.HasSuffix(name, ".md5") && !strings.Contains(name, "terraform") {
+            info.ARMv7URL = asset.DownloadURL
         }
         // Match MD5 files
         if strings.HasSuffix(name, ".md5") {
@@ -160,12 +151,6 @@ func GetLatestVersion(includeBeta bool) (*VersionInfo, error) {
 
             md5String := strings.TrimSpace(string(md5Content))
 
-            if strings.Contains(name, "amd64") && !strings.Contains(name, "terraform") {
-                info.AMDMD5 = parseMD5File(md5String)
-            }
-            if strings.Contains(name, "arm64") && !strings.Contains(name, "terraform") {
-                info.ARM64MD5 = parseMD5File(md5String)
-            }
             if strings.Contains(name, "armv7") && !strings.Contains(name, "terraform") {
                 info.ARMv7MD5 = parseMD5File(md5String)
             }
@@ -180,32 +165,18 @@ func GetLatestVersion(includeBeta bool) (*VersionInfo, error) {
 
 // ArchUpdateURL returns the download URL for the current runtime architecture.
 func (v *VersionInfo) ArchUpdateURL() string {
-    switch runtime.GOARCH {
-    case "arm64":
-        return v.ARM64URL
-    case "arm":
-        if BuildGOARM == "6" {
-            return v.ARMv6URL
-        }
-        return v.ARMv7URL
-    default:
-        return v.AMDURL
+    if BuildGOARM == "6" {
+        return v.ARMv6URL
     }
+    return v.ARMv7URL
 }
 
 // ArchMD5 returns the MD5 hash for the current runtime architecture.
 func (v *VersionInfo) ArchMD5() string {
-    switch runtime.GOARCH {
-    case "arm64":
-        return v.ARM64MD5
-    case "arm":
-        if BuildGOARM == "6" {
-            return v.ARMv6MD5
-        }
-        return v.ARMv7MD5
-    default:
-        return v.AMDMD5
+    if BuildGOARM == "6" {
+        return v.ARMv6MD5
     }
+    return v.ARMv7MD5
 }
 
 func cleanUpUpdateFiles() {

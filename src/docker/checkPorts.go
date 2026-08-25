@@ -7,7 +7,6 @@ import (
 	"net"
 	"strings"
 	"errors"
-	"runtime"
 )
 
 func isPortAvailable(port string) bool {
@@ -125,11 +124,6 @@ func UpdatePorts(finalPorts []string) error {
 	RemoveSelfUpdater()
 
 	version := "latest"
-
-	// if arm
-	if runtime.GOARCH == "arm64" {
-		version = "latest-arm64"
-	}
 	
 	service := DockerServiceCreateRequest{
 		Services: map[string]ContainerCreateRequestContainer {},
