@@ -58,8 +58,12 @@ func unzip(src string, dest string) error {
 					continue
 				}
 
-        if baseName == "cosmos-launcher" || baseName == "cosmos-launcher-armv7" {
-            fpath = filepath.Join(filepath.Dir(fpath), baseName+".updated")
+        // The launcher binary is rebuilt by the updater: it arrives in the zip
+        // as cosmos-launcher-<arch> (or plain cosmos-launcher) and is renamed
+        // to cosmos-launcher.updated so the update logic can swap it in after
+        // the main binary is replaced.
+        if strings.HasPrefix(baseName, "cosmos-launcher") {
+            fpath = filepath.Join(filepath.Dir(fpath), "cosmos-launcher.updated")
         }
 
         // Check for directory and create it if necessary

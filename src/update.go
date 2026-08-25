@@ -13,10 +13,46 @@ import (
 
     "github.com/azukaar/cosmos-server/src/utils"
 )
-// BuildGOARM is injected at build time via -ldflags "-X main.BuildGOARM=6|7"
-// so the update logic can distinguish armv6 from armv7 at runtime.
-var BuildGOARM = ""
 
+// BuildArch is injected at build time via -ldflags "-X main.BuildArch=armv6|armv7|386|riscv64|ppc64le"
+// It tells the update logic which architecture this binary was built for so it
+// can pick the matching release asset.
+var BuildArch = ""
+
+// releaseAssetSuffixes maps the Go GOARCH/GOARM runtime variants to the suffix
+// used in the published zip asset names (e.g. "...-armv6.zip", "...-386.zip").
+func archAssetSuffix(arch string) string {
+    switch arch {
+    case "386":
+        return "386"
+    case "amd64":
+        return "amd64"
+    case "arm":
+        return "arm"
+    case "arm64":
+        return "arm64"
+    case "armv6":
+        return "armv6"
+    case "armv7":
+        return "armv7"
+    case "mips":
+        return "mips"
+    case "mipsle":
+        return "mipsle"
+    case "mips64":
+        return "mips64"
+    case "mips64le":
+        return "mips64le"
+    case "ppc64le":
+        return "ppc64le"
+    case "riscv64":
+        return "riscv64"
+    case "s390x":
+        return "s390x"
+    default:
+        return arch
+    }
+}
 
 type ReleaseAsset struct {
     Name        string `json:"name"`
@@ -47,11 +83,11 @@ type Release struct {
 }
 
 type VersionInfo struct {
-    Version     string
-    ARMv7URL    string
-    ARMv6URL    string
-    ARMv7MD5    string
-    ARMv6MD5    string
+    Version string
+    // Maps an asset suffix (e.g. "armv6", "386", "riscv64") to the corresponding
+    // download URL or MD5 hash for that architecture.
+    URLs map[string]string
+    MD5s map[string]string
 }
 
 func parseMD5File(content string) string {
@@ -65,6 +101,22 @@ func parseMD5File(content string) string {
 			}
 	}
 	return ""
+}
+
+// detectAssetArch extracts the trailing architecture suffix (e.g. "-386",
+// "-armv7") from a release asset name, or "" if none is found.
+func detectAssetArch(name string) string {
+    wanted := []string{
+        "mips64le","mips64","mipsle","mips",
+        "riscv64","ppc64le","s390x","armv7","armv6",
+        "arm64","amd64","386","arm",
+    }
+    for _, a := range wanted {
+        if strings.Contains(name, "-"+a) {
+            return a
+        }
+    }
+    return ""
 }
 
 func GetLatestVersion(includeBeta bool) (*VersionInfo, error) {
@@ -118,23 +170,27 @@ func GetLatestVersion(includeBeta bool) (*VersionInfo, error) {
     // Initialize version info
     info := &VersionInfo{
         Version: latestRelease.TagName,
+        URLs:    map[string]string{},
+        MD5s:    map[string]string{},
     }
 
     // Parse assets to find URLs and MD5s
     for _, asset := range latestRelease.Assets {
-        name := strings.ToLower(asset.Name)
+        lower := strings.ToLower(asset.Name)
 
-        // Match ARMv7 binary
-        if strings.Contains(name, "armv7") && !strings.HasSuffix(name, ".md5") && !strings.Contains(name, "terraform") {
-            info.ARMv7URL = asset.DownloadURL
+        // Skip irrelevant artifacts
+        if strings.Contains(lower, "terraform") {
+            continue
         }
-        // Match ARMv6 binary
-        if strings.Contains(name, "armv6") && !strings.HasSuffix(name, ".md5") && !strings.Contains(name, "terraform") {
-            info.ARMv6URL = asset.DownloadURL
-        }
-        // Match MD5 files
-        if strings.HasSuffix(name, ".md5") {
-            // Fetch MD5 content
+
+        // A given asset is arch-specific if it carries an arch suffix.
+        arch := detectAssetArch(lower)
+
+        if strings.HasSuffix(lower, ".md5") {
+            if arch == "" {
+                continue
+            }
+            // Fetch the MD5 content for this architecture
             md5Resp, err := http.Get(asset.DownloadURL)
             if err != nil {
                 continue
@@ -144,15 +200,10 @@ func GetLatestVersion(includeBeta bool) (*VersionInfo, error) {
             if err != nil {
                 continue
             }
-
-            md5String := strings.TrimSpace(string(md5Content))
-
-            if strings.Contains(name, "armv7") && !strings.Contains(name, "terraform") {
-                info.ARMv7MD5 = parseMD5File(md5String)
-            }
-            if strings.Contains(name, "armv6") && !strings.Contains(name, "terraform") {
-                info.ARMv6MD5 = parseMD5File(md5String)
-            }
+            info.MD5s[arch] = parseMD5File(strings.TrimSpace(string(md5Content)))
+        } else if arch != "" {
+            // Regular zip asset for this architecture
+            info.URLs[arch] = asset.DownloadURL
         }
     }
 
@@ -161,18 +212,18 @@ func GetLatestVersion(includeBeta bool) (*VersionInfo, error) {
 
 // ArchUpdateURL returns the download URL for the current runtime architecture.
 func (v *VersionInfo) ArchUpdateURL() string {
-    if BuildGOARM == "6" {
-        return v.ARMv6URL
+    if v == nil || v.URLs == nil {
+        return ""
     }
-    return v.ARMv7URL
+    return v.URLs[archAssetSuffix(BuildArch)]
 }
 
 // ArchMD5 returns the MD5 hash for the current runtime architecture.
 func (v *VersionInfo) ArchMD5() string {
-    if BuildGOARM == "6" {
-        return v.ARMv6MD5
+    if v == nil || v.MD5s == nil {
+        return ""
     }
-    return v.ARMv7MD5
+    return v.MD5s[archAssetSuffix(BuildArch)]
 }
 
 func cleanUpUpdateFiles() {
