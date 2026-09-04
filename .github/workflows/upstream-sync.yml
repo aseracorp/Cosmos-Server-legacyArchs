@@ -1,0 +1,68 @@
+name: Sync upstream fork
+
+on:
+  # Daily check. A cheap upstream-SHA ancestor check skips the fetch/merge
+  # entirely when nothing changed, so no-op runs are fast.
+  schedule:
+    - cron: '17 3 * * *'
+  # Allow manual runs from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write   # required to dispatch the build workflow
+
+jobs:
+  sync-branch:
+    strategy:
+      fail-fast: false
+      matrix:
+        branch: [master, unstable]
+    runs-on: ubuntu-latest
+
+    env:
+      UPSTREAM: azukaar/Cosmos-Server
+
+    steps:
+      - name: Checkout ${{ matrix.branch }}
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.branch }}
+          fetch-depth: 0
+
+      - name: Add upstream remote and fetch
+        run: |
+          git remote add upstream https://github.com/${{ env.UPSTREAM }}.git
+          git fetch upstream ${{ matrix.branch }}
+
+      - name: Check if upstream tip is already merged in
+        id: changed
+        run: |
+          UPSTREAM_TIP=$(git rev-parse "upstream/${{ matrix.branch }}")
+          echo "upstream_tip=${UPSTREAM_TIP}"
+          # Already an ancestor of our local branch => nothing to do.
+          if git merge-base --is-ancestor "${UPSTREAM_TIP}" HEAD; then
+            echo "No upstream change for ${{ matrix.branch }}; already in sync."
+          else
+            echo "Upstream has new commits for ${{ matrix.branch }}."
+            echo "changed=true" >> "$GITHUB_ENV"
+            echo "upstream-tip=${UPSTREAM_TIP}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Merge upstream into ${{ matrix.branch }} and push
+        id: merge
+        if: env.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git merge --no-edit upstream/${{ matrix.branch }}
+          git push origin "${{ matrix.branch }}"
+
+      # Pushes made with GITHUB_TOKEN do NOT re-trigger 'on: push' workflows
+      # (build.yml), so we explicitly dispatch the build when we actually merged.
+      - name: Dispatch build after successful merge
+        if: env.changed == 'true'
+        run: |
+          gh workflow run build.yml --ref "${{ matrix.branch }}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
