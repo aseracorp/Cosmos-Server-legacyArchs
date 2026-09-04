@@ -14,8 +14,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
   MAX_TOKEN: ${{ secrets.MAX_TOKEN }}
   PKG_NAME: "cosmos-cloud"
-  MAINTAINER_NAME: "Yann Stepienik"
-  MAINTAINER_EMAIL: "cosmoscloudsup@gmail.com"
+  ARCHS: "armv7 armv6 386 riscv64 ppc64le"
 
 jobs:
   build-and-release:
@@ -65,7 +64,7 @@ jobs:
         uses: actions/cache@v6
         with:
           path: GeoLite2-Country.mmdb
-          key: ${{ runner.os }}-geolite2
+          key: ${{ runner.os }}-geolite2-v2
 
       - name: Download GeoLite2-Country database
         if: steps.cache-geolite.outputs.cache-hit != 'true'
@@ -78,7 +77,7 @@ jobs:
         uses: actions/cache@v6
         with:
           path: nebula*
-          key: ${{ runner.os }}-nebula
+          key: ${{ runner.os }}-nebula-v2
 
       - name: Download and Extract ARMv7 Nebula Binary
         if: steps.cache-nebula.outputs.cache-hit != 'true'
@@ -106,19 +105,79 @@ jobs:
             mv nebula nebula-armv6
             mv nebula-cert nebula-armv6-cert
 
+      - name: Download and Extract x86 (386) Nebula Binary
+        if: steps.cache-nebula.outputs.cache-hit != 'true'
+        run: |
+            curl -LO https://github.com/slackhq/nebula/releases/download/v1.8.2/nebula-linux-386.tar.gz
+            tar -xzvf nebula-linux-386.tar.gz
+            upx -9 nebula
+
+      - name: Rename x86 (386) Nebula Binary
+        if: steps.cache-nebula.outputs.cache-hit != 'true'
+        run: |
+            mv nebula nebula-386
+            mv nebula-cert nebula-386-cert
+
+      - name: Download and Extract RISC-V Nebula Binary
+        if: steps.cache-nebula.outputs.cache-hit != 'true'
+        run: |
+            # UPX does not support riscv64, so skip compression here.
+            curl -LO https://github.com/slackhq/nebula/releases/download/v1.8.2/nebula-linux-riscv64.tar.gz
+            tar -xzvf nebula-linux-riscv64.tar.gz
+
+      - name: Rename RISC-V Nebula Binary
+        if: steps.cache-nebula.outputs.cache-hit != 'true'
+        run: |
+            mv nebula nebula-riscv64
+            mv nebula-cert nebula-riscv64-cert
+
+      - name: Download and Extract PPC64LE Nebula Binary
+        if: steps.cache-nebula.outputs.cache-hit != 'true'
+        run: |
+            curl -LO https://github.com/slackhq/nebula/releases/download/v1.8.2/nebula-linux-ppc64le.tar.gz
+            tar -xzvf nebula-linux-ppc64le.tar.gz
+            upx -9 nebula
+
+      - name: Rename PPC64LE Nebula Binary
+        if: steps.cache-nebula.outputs.cache-hit != 'true'
+        run: |
+            mv nebula nebula-ppc64le
+            mv nebula-cert nebula-ppc64le-cert
+
       - name: cache restic Binary
         id: cache-restic
         uses: actions/cache@v6
         with:
           path: restic*
-          key: ${{ runner.os }}-restic
+          key: ${{ runner.os }}-restic-v2
 
-      - name: Download and Extract ARM Restic binary
+      - name: Download and Extract restic ARM binary
         if: steps.cache-restic.outputs.cache-hit != 'true'
         run: |
             curl -LO https://github.com/restic/restic/releases/download/v0.17.3/restic_0.17.3_linux_arm.bz2
             bunzip2 restic_0.17.3_linux_arm.bz2
             mv restic_0.17.3_linux_arm restic-arm
+
+      - name: Download and Extract restic x86 (386) binary
+        if: steps.cache-restic.outputs.cache-hit != 'true'
+        run: |
+            curl -LO https://github.com/restic/restic/releases/download/v0.17.3/restic_0.17.3_linux_386.bz2
+            bunzip2 restic_0.17.3_linux_386.bz2
+            mv restic_0.17.3_linux_386 restic-386
+
+      - name: Download and Extract restic RISC-V binary
+        if: steps.cache-restic.outputs.cache-hit != 'true'
+        run: |
+            curl -LO https://github.com/restic/restic/releases/download/v0.17.3/restic_0.17.3_linux_riscv64.bz2
+            bunzip2 restic_0.17.3_linux_riscv64.bz2
+            mv restic_0.17.3_linux_riscv64 restic-riscv64
+
+      - name: Download and Extract restic PPC64LE binary
+        if: steps.cache-restic.outputs.cache-hit != 'true'
+        run: |
+            curl -LO https://github.com/restic/restic/releases/download/v0.17.3/restic_0.17.3_linux_ppc64le.bz2
+            bunzip2 restic_0.17.3_linux_ppc64le.bz2
+            mv restic_0.17.3_linux_ppc64le restic-ppc64le
 
       - name: Build UI
         run: npm run client-build
@@ -183,37 +242,46 @@ jobs:
           subject-digest: ${{ steps.push.outputs.digest }}
           push-to-registry: true
 
-      - name: Prepare ARMv7 package structure      
+      - name: Prepare package structures (all archs)
         run: |
-            mkdir -p ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7
-            cp -r build/* ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/
-            mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/cosmos-armv7 ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/cosmos
-            mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/cosmos-launcher-armv7 ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/cosmos-launcher
-            mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/restic-arm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/restic
-            mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/nebula-armv7 ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/nebula
-            mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/nebula-armv7-cert ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/nebula-cert
-            rm -f ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7/nebula-armv6*
+            for arch in ${{ env.ARCHS }}; do
+                pkg=${{ env.PKG_NAME }}-${{ env.VERSION }}-${arch}
+                mkdir -p ${pkg}
+                cp -r build/* ${pkg}/
 
-      - name: Prepare ARMv6 package structure      
-        run: |
-            mkdir -p ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6
-            cp -r build/* ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/
-            mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/cosmos-armv6 ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/cosmos
-            mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/cosmos-launcher-armv6 ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/cosmos-launcher
-            mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/restic-arm ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/restic
-            mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/nebula-armv6 ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/nebula
-            mv ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/nebula-armv6-cert ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/nebula-cert
-            rm -f ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6/nebula-armv7*
+                # armv6/armv7 share the generic ARM restic build; the others
+                # ship a restic binary built for their own architecture.
+                if [ "${arch}" = "armv6" ] || [ "${arch}" = "armv7" ]; then
+                    restic_src=restic-arm
+                else
+                    restic_src=restic-${arch}
+                fi
+
+                # Rename per-arch binaries to canonical names.
+                mv ${pkg}/cosmos-${arch} ${pkg}/cosmos
+                mv ${pkg}/cosmos-launcher-${arch} ${pkg}/cosmos-launcher
+                mv ${pkg}/${restic_src} ${pkg}/restic
+
+                if [ -f ${pkg}/nebula-${arch} ]; then
+                    mv ${pkg}/nebula-${arch} ${pkg}/nebula
+                    mv ${pkg}/nebula-${arch}-cert ${pkg}/nebula-cert
+                fi
+
+                # Remove binaries for architectures other than this one.
+                find ${pkg}/ -mindepth 1 -maxdepth 1 \( -name "cosmos-*" -o -name "cosmos-launcher-*" -o -name "restic-*" -o -name "nebula-*" \) ! -name "cosmos" ! -name "cosmos-launcher" ! -name "restic" ! -name "nebula" ! -name "nebula-cert" -delete
+            done
 
       - name: Create .zip packages       
         run: |
-            zip -r ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7.zip ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7
-            zip -r ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6.zip ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6
+            for arch in ${{ env.ARCHS }}; do
+                zip -r ${{ env.PKG_NAME }}-${{ env.VERSION }}-${arch}.zip ${{ env.PKG_NAME }}-${{ env.VERSION }}-${arch}
+            done
 
       - name: Generate MD5 hashes    
         run: |
-            md5sum ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7.zip > ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv7.zip.md5
-            md5sum ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6.zip > ${{ env.PKG_NAME }}-${{ env.VERSION }}-armv6.zip.md5
+            for arch in ${{ env.ARCHS }}; do
+                md5sum ${{ env.PKG_NAME }}-${{ env.VERSION }}-${arch}.zip > ${{ env.PKG_NAME }}-${{ env.VERSION }}-${arch}.zip.md5
+            done
 
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1      
