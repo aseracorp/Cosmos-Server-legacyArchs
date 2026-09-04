@@ -1,3 +1,22 @@
+## Version 0.23.04
+ - Allow terraform to remove Constellation managers
+
+## Version 0.23.03
+ - Update NATS to v2.14.6 (server) / v1.53.1 (client)
+ - Update Go to 1.26
+
+## Version 0.23.02
+ - Hardened RClone /about path
+ - Hardened set/get config path
+ - Hardened Update system
+ - Hardened Invite system
+ - Fix issue with App Gate not checking 2FA consistently 
+ - Fix temperature reading when there's a warning (Thanks @BetterAndBetterII)
+ - Fix xram/swap shown under disks (Thanks @madejackson)
+
+## Version 0.23.01
+ - Allow client servers in Constellation
+
 ## Version 0.23.00
  - Remove Lungo, use SQLite instead
  - Remove MongoDB use SQLite / Postgres instead 

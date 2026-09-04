@@ -477,7 +477,7 @@ func CreateServiceRoute(w http.ResponseWriter, req *http.Request) {
 
 		CreateService(serviceRequest, 
 			func (msg string) {
-				fmt.Fprintf(w, msg)
+				fmt.Fprintf(w, "%s", msg)
 				flusher.Flush()
 			},
 		)
@@ -893,7 +893,7 @@ func CreateService(serviceRequest DockerServiceCreateRequest, OnLog func(string)
 						err = os.Chown(newSource, container.UID, container.GID)
 						if err != nil {
 							utils.Error("CreateService: Unable to change ownership of directory", err)
-							OnLog(utils.DoErr("Unable to change ownership of directory: " + err.Error()))
+							OnLog(utils.DoErr("%s", "Unable to change ownership of directory: " + err.Error()))
 						}
 					} else if container.User != "" && strings.Contains(container.User, ":") { 
 						uidgid := strings.Split(container.User, ":")
@@ -902,21 +902,21 @@ func CreateService(serviceRequest DockerServiceCreateRequest, OnLog func(string)
 						err = os.Chown(newSource, uid, gid)
 						if err != nil {
 							utils.Error("CreateService: Unable to change ownership of directory", err)
-							OnLog(utils.DoErr("Unable to change ownership of directory: " + err.Error()))
+							OnLog(utils.DoErr("%s", "Unable to change ownership of directory: " + err.Error()))
 						}
 					} else if container.User != "" {
 						// Change the ownership of the directory to the container.User
 						userInfo, err := user.Lookup(container.User)
 						if err != nil {
 							utils.Error("CreateService: Unable to lookup user", err)
-							OnLog(utils.DoErr("Unable to lookup user " + container.User + ". " +err.Error()))
+							OnLog(utils.DoErr("%s", "Unable to lookup user " + container.User + ". " +err.Error()))
 						} else {
 							uid, _ := strconv.Atoi(userInfo.Uid)
 							gid, _ := strconv.Atoi(userInfo.Gid)
 							err = os.Chown(newSource, uid, gid)
 							if err != nil {
 								utils.Error("CreateService: Unable to change ownership of directory", err)
-								OnLog(utils.DoErr("Unable to change ownership of directory: " + err.Error()))
+								OnLog(utils.DoErr("%s", "Unable to change ownership of directory: " + err.Error()))
 							}
 						}	
 					}
@@ -1197,7 +1197,7 @@ func CreateService(serviceRequest DockerServiceCreateRequest, OnLog func(string)
 			oldConfig.NetworkSettings = existingContainer.NetworkSettings
 
 			utils.Warn("CreateService: Container " + container.Name + " already exist, overwriting.")
-			OnLog(utils.DoWarn("Container " + container.Name + " already exist, overwriting.\n"))
+			OnLog(utils.DoWarn("%s", "Container " + container.Name + " already exist, overwriting.\n"))
 	
 			// stop the container 
 			utils.Log("CreateService: Stopping container: " + container.Name)
@@ -1205,7 +1205,7 @@ func CreateService(serviceRequest DockerServiceCreateRequest, OnLog func(string)
 			err = DockerClient.ContainerStop(DockerContext, container.Name, conttype.StopOptions{})
 			if err != nil {
 				utils.Error("CreateService: Rolling back changes because of -- Container", err)
-				OnLog(utils.DoErr("Rolling back changes because of -- Container creation error: "+err.Error()))
+				OnLog(utils.DoErr("%s", "Rolling back changes because of -- Container creation error: "+err.Error()))
 				Rollback(rollbackActions, OnLog)
 				return err
 			}
@@ -1216,7 +1216,7 @@ func CreateService(serviceRequest DockerServiceCreateRequest, OnLog func(string)
 			err = DockerClient.ContainerRemove(DockerContext, container.Name, conttype.RemoveOptions{})
 			if err != nil {
 				utils.Error("CreateService: Rolling back changes because of -- Container", err)
-				OnLog(utils.DoErr("Rolling back changes because of -- Container creation error: "+err.Error()))
+				OnLog(utils.DoErr("%s", "Rolling back changes because of -- Container creation error: "+err.Error()))
 				Rollback(rollbackActions, OnLog)
 				return err
 			}
@@ -1268,7 +1268,7 @@ func CreateService(serviceRequest DockerServiceCreateRequest, OnLog func(string)
 
 		if err != nil {
 			utils.Error("CreateService: Rolling back changes because of -- Container", err)
-			OnLog(utils.DoErr("Rolling back changes because of -- Container creation error: "+err.Error()))
+			OnLog(utils.DoErr("%s", "Rolling back changes because of -- Container creation error: "+err.Error()))
 			Rollback(rollbackActions, OnLog)
 			return err
 		}
@@ -1290,7 +1290,7 @@ func CreateService(serviceRequest DockerServiceCreateRequest, OnLog func(string)
 			})
 			if err != nil && !strings.Contains(err.Error(), "already exists in network") {
 				utils.Error("CreateService: Rolling back changes because of -- Network Connection -- ", err)
-				OnLog(utils.DoErr("Rolling back changes because of -- Network connection error: "+err.Error()))
+				OnLog(utils.DoErr("%s", "Rolling back changes because of -- Network connection error: "+err.Error()))
 				Rollback(rollbackActions, OnLog)
 				return err
 			} else if err != nil && strings.Contains(err.Error(), "already exists in network") {
@@ -1324,7 +1324,7 @@ func CreateService(serviceRequest DockerServiceCreateRequest, OnLog func(string)
 				//overwrite route
 				configRoutes[existsAt] = (utils.ProxyRouteConfig)(route)
 				utils.Warn("CreateService: Route " + route.Name + " already exist, overwriting.")
-				OnLog(utils.DoWarn("Route " + route.Name + " already exist, overwriting.\n"))
+				OnLog(utils.DoWarn("%s", "Route " + route.Name + " already exist, overwriting.\n"))
 			}
 		}
 		
@@ -1338,7 +1338,7 @@ func CreateService(serviceRequest DockerServiceCreateRequest, OnLog func(string)
 			if strings.Contains(targetContainer, ":") {
 				err = errors.New("Link network cannot contain ':' please use container name only")
 				utils.Error("CreateService: Rolling back changes because of -- Link network", err)
-				OnLog(utils.DoErr("Rolling back changes because of -- Link network creation error: "+err.Error()))
+				OnLog(utils.DoErr("%s", "Rolling back changes because of -- Link network creation error: "+err.Error()))
 				Rollback(rollbackActions, OnLog)
 				return err
 			}
@@ -1346,7 +1346,7 @@ func CreateService(serviceRequest DockerServiceCreateRequest, OnLog func(string)
 			err = CreateLinkNetwork(container.Name, targetContainer)
 			if err != nil {
 				utils.Error("CreateService: Rolling back changes because of -- Link network", err)
-				OnLog(utils.DoErr("Rolling back changes because of -- Link network creation error: "+err.Error()))
+				OnLog(utils.DoErr("%s", "Rolling back changes because of -- Link network creation error: "+err.Error()))
 				Rollback(rollbackActions, OnLog)
 				return err
 			}
@@ -1368,7 +1368,7 @@ func CreateService(serviceRequest DockerServiceCreateRequest, OnLog func(string)
 	startOrder, mustStart, err := ReOrderServices(tempServiceList)
 	if err != nil {
 		utils.Error("CreateService: Rolling back changes because of -- Container", err)
-		OnLog(utils.DoErr("Rolling back changes because of -- Container creation error: "+err.Error()))
+		OnLog(utils.DoErr("%s", "Rolling back changes because of -- Container creation error: "+err.Error()))
 		Rollback(rollbackActions, OnLog)
 		return err
 	}
@@ -1378,7 +1378,7 @@ func CreateService(serviceRequest DockerServiceCreateRequest, OnLog func(string)
 		err = DockerClient.ContainerStart(DockerContext, container.Name, conttype.StartOptions{})
 		if err != nil {
 			utils.Error("CreateService: Start Container", err)
-			OnLog(utils.DoErr("Rolling back changes because of -- Container start error" + container.Name + " : "+err.Error()))
+			OnLog(utils.DoErr("%s", "Rolling back changes because of -- Container start error" + container.Name + " : "+err.Error()))
 			Rollback(rollbackActions, OnLog)
 			return err
 		}
@@ -1404,7 +1404,7 @@ func CreateService(serviceRequest DockerServiceCreateRequest, OnLog func(string)
 
 				if retries > 30 {
 					utils.Error("CreateService: Start Container", fmt.Errorf("Container %s did not start", container.Name))
-					OnLog(utils.DoErr("Rolling back changes because of -- Container start error" + container.Name + " : Container did not start"))
+					OnLog(utils.DoErr("%s", "Rolling back changes because of -- Container start error" + container.Name + " : Container did not start"))
 					Rollback(rollbackActions, OnLog)
 					return fmt.Errorf("Container %s did not start", container.Name)
 				}
@@ -1432,7 +1432,7 @@ func CreateService(serviceRequest DockerServiceCreateRequest, OnLog func(string)
 			
 				if err != nil {
 					utils.Error("CreateService: Post Install", err)
-					OnLog(utils.DoErr("Rolling back changes because of -- Post install error: "+err.Error()))
+					OnLog(utils.DoErr("%s", "Rolling back changes because of -- Post install error: "+err.Error()))
 					Rollback(rollbackActions, OnLog)
 					return err
 				}
@@ -1441,7 +1441,7 @@ func CreateService(serviceRequest DockerServiceCreateRequest, OnLog func(string)
 				response, err := DockerClient.ContainerExecAttach(DockerContext, execResponse.ID, doctype.ExecStartCheck{})
 				if err != nil {
 					utils.Error("CreateService: Post Install", err)
-					OnLog(utils.DoErr("Rolling back changes because of -- Post install error: "+err.Error()))
+					OnLog(utils.DoErr("%s", "Rolling back changes because of -- Post install error: "+err.Error()))
 					Rollback(rollbackActions, OnLog)
 					return err
 				}
