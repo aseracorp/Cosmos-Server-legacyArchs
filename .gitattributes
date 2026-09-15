@@ -1,0 +1,16 @@
+# ── Fork-owned files: our version ALWAYS wins on content merges ──────────────
+# This fork (Cosmos-Server-legacyArchs) exists to keep legacy-arch builds
+# (armv6/armv7/386/riscv64/ppc64le) alive. The files below are fork-customized
+# and upstream's edits must never clobber them. When both sides modify the same
+# lines, git resolves to HEAD (fork) automatically.
+#
+# Note: merge=ours only affects CONTENT conflicts. Modify/delete conflicts
+# (.circleci/, docker.sh) are handled deterministically in upstream-sync.yml.
+
+src/update.go                  merge=ours
+build.sh                       merge=ours
+build-dev.sh                   merge=ours
+dockerfile                     merge=ours
+dockerfile.local               merge=ours
+.github/workflows/build.yml    merge=ours
+.github/workflows/upstream-sync.yml merge=ours

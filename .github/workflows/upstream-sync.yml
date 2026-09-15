@@ -49,13 +49,60 @@ jobs:
             echo "upstream-tip=${UPSTREAM_TIP}" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Merge upstream into ${{ matrix.branch }} and push
+      - name: Merge upstream into ${{ matrix.branch }}
         id: merge
         if: env.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          set +e
           git merge --no-edit upstream/${{ matrix.branch }}
+          MERGE_EXIT=$?
+          set -e
+          echo "merge_exit=${MERGE_EXIT}" >> "$GITHUB_ENV"
+          exit 0   # conflicts are resolved in the next step; only the resolver decides failure
+
+      # ── Deterministic conflict resolution ────────────────────────────────
+      # .gitattributes (merge=ours) already auto-resolves content conflicts on
+      # fork-owned files (src/update.go, build.sh, dockerfile, workflows, ...).
+      # The remaining KNOWN conflict classes are resolved here:
+      #   * modify/delete on files we intentionally don't ship:
+      #     .circleci/config.yml (upstream uses CircleCI; we use GH Actions),
+      #     docker.sh (upstream helper; our build pipeline doesn't use it)
+      #   * go-sdk/go.mod toolchain bumps -> always follow upstream
+      # ANY OTHER conflict is left untouched so the job fails loudly and a
+      # human decides (never silently drop upstream code).
+      - name: Resolve known upstream conflicts
+        if: env.merge_exit != '0' && env.changed == 'true'
+        run: |
+          UNRESOLVED=0
+          for f in $(git diff --name-only --diff-filter=U); do
+            case "$f" in
+              .circleci/*|docker.sh)
+                echo "✔ keep deleted: $f"
+                git rm -f "$f" >/dev/null 2>&1 || true
+                ;;
+              go-sdk/go.mod)
+                echo "✔ follow upstream toolchain: $f"
+                git checkout --theirs "$f"
+                git add "$f"
+                ;;
+              *)
+                echo "✘ UNEXPECTED conflict in: $f"
+                UNRESOLVED=1
+                ;;
+            esac
+          done
+          if [ "$UNRESOLVED" = "1" ]; then
+            echo "::error::Unexpected conflict(s) — resolve manually. See status:"
+            git status --short
+            exit 1
+          fi
+
+      - name: Commit and push merge
+        if: env.changed == 'true'
+        run: |
+          git commit --no-edit || echo "Nothing to commit (merge produced no changes)"
           git push origin "${{ matrix.branch }}"
 
       # Pushes made with GITHUB_TOKEN do NOT re-trigger 'on: push' workflows
