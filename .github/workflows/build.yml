@@ -3,9 +3,13 @@ name: Build and Publish release
 on:
   push:
     branches: [ "master", "unstable" ]
-  pull_request:
-    branches: [ "master", "unstable" ]
-  
+  # NOTE: no pull_request trigger. The repo ruleset forces changes to land
+  # via PR; a pull_request-triggered build would push images / create
+  # prereleases from unmerged PR heads. Builds run on push (merge) only,
+  # plus manual dispatch — and the upstream-sync workflow dispatches
+  # build.yml explicitly after merging via PR (GITHUB_TOKEN merges don't
+  # re-trigger on:push).
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
