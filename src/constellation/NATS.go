@@ -36,6 +36,9 @@ type NodeHeartbeat struct {
 	// Hostnames are the names this node serves itself (main hostname and
 	// non-tunneled routes) so every constellation DNS can answer for them.
 	Hostnames []string `json:"hostnames,omitempty"`
+	// PublicAddr is the address the public DNS records of this node point at
+	// (see HTTPConfig.AdvertisedAddress), empty when no zone manages records.
+	PublicAddr string `json:"publicAddr,omitempty"`
 	// RunningDeployments is the list of scheduler-managed deployment names
 	// currently running on this node, derived from docker containers carrying
 	// the `cosmos-deployment` label. Populated from docker at heartbeat time;
@@ -67,6 +70,13 @@ type NodeHeartbeat struct {
 	// Tags mirror ConstellationDevice.Tags so the leader can filter eligible
 	// placement targets by deployment affinity without an extra DB round-trip.
 	Tags []string `json:"tags,omitempty"`
+	// Draining is set while a restart waits for this node's running jobs:
+	// the leader must not hand it new CI builds (see utils.PlanRestart).
+	Draining bool `json:"draining,omitempty"`
+	// Arch is the CPU architecture; Platforms the container platforms the
+	// node can build for (native plus QEMU-emulated), for the CI runners page.
+	Arch      string   `json:"arch,omitempty"`
+	Platforms []string `json:"platforms,omitempty"`
 }
 
 // atomic: written under natsStartMutex, but read lock-free by status/ping paths
@@ -1285,6 +1295,10 @@ func MasterNATSClientRouter() {
 
 		pro.SetRegistryClusterHandles(RegistryClusterHandles)
 		pro.SetRegistryNodeProvider(RegistryNodeInfo)
+		pro.SetCIClusterDomainProvider(ClusterDomain)
+
+		pro.SetStateClusterHandles(StateClusterHandles)
+		pro.StartStateMirror()
 		pro.StartRegistryServing()
 		// GC and cron triggers are leadership-bound so each runs once per cluster.
 		pro.StartRegistryGC()

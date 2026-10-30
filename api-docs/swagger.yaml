@@ -1,5 +1,21 @@
 basePath: /cosmos
 definitions:
+  configapi.AdvertisedAddressOption:
+    properties:
+      address:
+        type: string
+      value:
+        type: string
+    type: object
+  configapi.AdvertisedAddressesResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/configapi.AdvertisedAddressOption'
+        type: array
+      status:
+        type: string
+    type: object
   configapi.CreateAPITokenRequest:
     properties:
       description:
@@ -100,6 +116,90 @@ definitions:
         type: string
     required:
     - operation
+    type: object
+  configapi.ZoneCertStatus:
+    properties:
+      hosts:
+        items:
+          type: string
+        type: array
+      issuedBy:
+        type: string
+      validUntil:
+        type: string
+    type: object
+  configapi.ZoneStatus:
+    properties:
+      DNSChallengeConfig:
+        additionalProperties:
+          type: string
+        type: object
+      TLSCert:
+        type: string
+      TLSKey:
+        type: string
+      certificate:
+        $ref: '#/definitions/configapi.ZoneCertStatus'
+      derived:
+        type: boolean
+      disablePropagationChecks:
+        type: boolean
+      dnschallengePropagationWait:
+        type: integer
+      dnschallengeProvider:
+        type: string
+      dnschallengeResolvers:
+        type: string
+      hostCertificates:
+        additionalProperties:
+          $ref: '#/definitions/utils.HostCertificate'
+        type: object
+      hosts:
+        items:
+          type: string
+        type: array
+      httpscertificateMode:
+        description: |-
+          HTTPS setup. The mode is LETSENCRYPT, SELFSIGNED, PROVIDED (the
+          certificate below) or DISABLED (the hostnames are served over plain HTTP).
+          The zone decides alone: no server has an HTTPS mode of its own to
+          override it, only the choice of not serving HTTPS at all.
+        type: string
+      issuesCertificate:
+        description: |-
+          IssuesCertificate is true when the zone gets a certificate of its own
+          through its DNS provider; its hostnames use this node's one otherwise
+        type: boolean
+      manageRecords:
+        description: DynDNS setup, needs a DNSChallengeProvider
+        type: boolean
+      records:
+        allOf:
+        - $ref: '#/definitions/dnsrecords.ZoneStatus'
+        description: |-
+          Records is the DynDNS state of the zone, only known by the node writing
+          the records (this node when standalone, the cluster leader otherwise)
+      recordsSupported:
+        description: RecordsSupported is true when the DNS provider of the zone can
+          manage records
+        type: boolean
+      useWildcardCertificate:
+        type: boolean
+      wildcardRecord:
+        type: boolean
+      zone:
+        type: string
+    required:
+    - zone
+    type: object
+  configapi.ZonesResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/configapi.ZoneStatus'
+        type: array
+      status:
+        type: string
     type: object
   constellation.DeviceBlockRequestJSON:
     properties:
@@ -334,6 +434,21 @@ definitions:
     required:
     - name
     - scheduler
+    type: object
+  dnsrecords.ZoneStatus:
+    properties:
+      lastError:
+        type: string
+      lastSync:
+        type: string
+      records:
+        additionalProperties:
+          items:
+            type: string
+          type: array
+        type: object
+      supported:
+        type: boolean
     type: object
   docker.ContainerCreateRequestContainer:
     properties:
@@ -576,6 +691,12 @@ definitions:
         items:
           type: string
         type: array
+      dns:
+        description: DNS replaces the DNS servers of the container when sent, an empty
+          list for the default of Docker
+        items:
+          type: string
+        type: array
       envVars:
         items:
           type: string
@@ -787,6 +908,17 @@ definitions:
       useWildcardCertificate:
         type: boolean
     type: object
+  main.ServerUpdateCheck:
+    properties:
+      containerized:
+        type: boolean
+      currentVersion:
+        type: string
+      latestVersion:
+        type: string
+      updateAvailable:
+        type: boolean
+    type: object
   main.SetupJSON:
     properties:
       DNSChallengeConfig:
@@ -848,6 +980,23 @@ definitions:
         type: string
       useWildcardCertificate:
         type: boolean
+    type: object
+  main.SetupJoinJSON:
+    properties:
+      constellationConfig:
+        description: ConstellationConfig is the constellation file of this server,
+          as created on the cluster
+        type: string
+      hostname:
+        description: Hostname overrides the one derived from the cluster domain (<device>.<cluster
+          domain>)
+        type: string
+      preview:
+        description: Preview only returns the hostname the server would take, nothing
+          is saved
+        type: boolean
+    required:
+    - constellationConfig
     type: object
   mount.BindOptions:
     properties:
@@ -1104,6 +1253,23 @@ definitions:
         description: SHA pins the commit; empty builds the branch head.
         type: string
     type: object
+  pro.CICopyRequest:
+    properties:
+      buildEnv:
+        description: BuildEnv copies the build-time environment (build.env).
+        type: boolean
+      from:
+        description: From is the project to copy from.
+        type: string
+      runtimeEnv:
+        description: RuntimeEnv copies the runtime environment of the deploy template
+          (deploy.template.env).
+        type: boolean
+      secrets:
+        description: Secrets copies the project secrets, values and PR availability
+          included.
+        type: boolean
+    type: object
   pro.CIDeployRule:
     properties:
       enabled:
@@ -1171,8 +1337,9 @@ definitions:
       build:
         $ref: '#/definitions/pro.CIBuildSettings'
       project:
-        description: Project names an existing project whose stored git token is used
-          when Source.Token is empty.
+        description: |-
+          Project names an existing project whose stored git credentials are used when Source has
+          neither a connection nor a token.
         type: string
       source:
         $ref: '#/definitions/pro.CISource'
@@ -1185,11 +1352,57 @@ definitions:
         description: Deployment / Site is the target name; empty = the rule's default
           name.
         type: string
+      env:
+        additionalProperties:
+          type: string
+        description: |-
+          Env sets or overrides environment variables of the deployed
+          application for this environment only: the service the UI template
+          creates, or the cosmos.json services that take the artifact. Values
+          may use the build variables and the project secrets (${NAME}).
+        type: object
       host:
         description: Host is the route hostname the target gets when CI creates it.
         type: string
       name:
         description: Name is the environment label ("production", "staging").
+        type: string
+    type: object
+  pro.CIGitConnection:
+    properties:
+      apiUrl:
+        description: |-
+          APIURL overrides the provider API base for self-hosted instances;
+          empty derives it from the repository URL.
+        type: string
+      createdAt:
+        type: string
+      description:
+        type: string
+      host:
+        description: |-
+          Host is the git host the token is valid for (github.com,
+          git.example.com). The UI offers the connection for repositories on
+          that host, and self-hosted repository listings derive the API base
+          from it; empty matches the provider's public host. A pasted URL is
+          reduced to its hostname on save.
+        type: string
+      name:
+        type: string
+      provider:
+        description: Provider is one of github, gitlab, gitea, bitbucket or git.
+        type: string
+      token:
+        description: |-
+          Token authenticates clones and provider API calls. Write-only
+          through the API: reads answer "****" when set.
+        type: string
+      updatedAt:
+        type: string
+      username:
+        description: |-
+          Username pairs with Token for providers that need one (Bitbucket app
+          passwords, plain git basic auth). Defaults per provider.
         type: string
     type: object
   pro.CIPreview:
@@ -1271,7 +1484,17 @@ definitions:
     type: object
   pro.CIRegistryTarget:
     properties:
+      artifactQuotaBytes:
+        description: |-
+          ArtifactQuotaBytes caps the project's stored file artifacts (0: the
+          default, ciDefaultArtifactQuota).
+        type: integer
       image:
+        type: string
+      packageRegistry:
+        description: |-
+          PackageRegistry receives the package of an npm / pypi strategy. Empty
+          on save picks the only registry of that type.
         type: string
       registry:
         description: 'Registry: the docker registry to push to (its host prefixes
@@ -1312,13 +1535,23 @@ definitions:
         items:
           type: string
         type: array
+      connection:
+        description: |-
+          Connection names a CIGitConnection whose credentials this project
+          uses. When set, Token and Username below are ignored (and cleared on
+          save); APIURL still applies when given, else the connection's does.
+        type: string
       defaultBranch:
         description: DefaultBranch is what a manual run builds when no branch is given.
         type: string
       provider:
         type: string
       repoUrl:
-        description: RepoURL is the https clone URL (https://github.com/owner/repo[.git]).
+        description: |-
+          RepoURL is the https clone URL (https://github.com/owner/repo[.git]).
+          An ssh clone URL (git@host:owner/repo.git, ssh://host/owner/repo) is
+          accepted on save and converted to its https form: clones and provider
+          calls authenticate with the token over https.
         type: string
       rootDir:
         description: RootDir is the sub-folder to build (monorepos).
@@ -1326,7 +1559,8 @@ definitions:
       token:
         description: |-
           Token authenticates clones and provider API calls (webhook creation,
-          commit statuses, collaborator checks). Write-only through the API.
+          commit statuses, collaborator checks) for a project without a
+          connection. Write-only through the API.
         type: string
       username:
         description: |-
@@ -1830,6 +2064,24 @@ definitions:
         - $ref: '#/definitions/utils.ProxyRouteConfig'
         description: Route replaces the user-facing half of the proxy route; its RestrictToConstellation
           wins when both are sent.
+    type: object
+  pro.ProState:
+    properties:
+      buckets:
+        additionalProperties:
+          additionalProperties:
+            items:
+              format: int32
+              type: integer
+            type: array
+          type: object
+        type: object
+      exportedAt:
+        type: string
+      node:
+        type: string
+      version:
+        type: integer
     type: object
   pro.RegistryCreateRequest:
     properties:
@@ -2509,6 +2761,17 @@ definitions:
     type: object
   utils.ConstellationConfig:
     properties:
+      ClusterDomain:
+        description: |-
+          ClusterDomain is the domain servers joining with a constellation file get
+          their hostname under (<device>.<domain>). Empty: the zone of this server's hostname.
+        type: string
+      DoNotUseConstellationDNSOnHost:
+        description: |-
+          DoNotUseConstellationDNSOnHost keeps the resolver of this server as it is.
+          Unset, the server uses the Constellation DNS on Pro and keeps its own
+          resolver on the community edition (see UseConstellationDNSOnHost).
+        type: boolean
       FirewallBlockedClients:
         items:
           type: string
@@ -2559,6 +2822,43 @@ definitions:
     required:
     - key
     type: object
+  utils.DNSZoneConfig:
+    properties:
+      DNSChallengeConfig:
+        additionalProperties:
+          type: string
+        type: object
+      TLSCert:
+        type: string
+      TLSKey:
+        type: string
+      disablePropagationChecks:
+        type: boolean
+      dnschallengePropagationWait:
+        type: integer
+      dnschallengeProvider:
+        type: string
+      dnschallengeResolvers:
+        type: string
+      httpscertificateMode:
+        description: |-
+          HTTPS setup. The mode is LETSENCRYPT, SELFSIGNED, PROVIDED (the
+          certificate below) or DISABLED (the hostnames are served over plain HTTP).
+          The zone decides alone: no server has an HTTPS mode of its own to
+          override it, only the choice of not serving HTTPS at all.
+        type: string
+      manageRecords:
+        description: DynDNS setup, needs a DNSChallengeProvider
+        type: boolean
+      useWildcardCertificate:
+        type: boolean
+      wildcardRecord:
+        type: boolean
+      zone:
+        type: string
+    required:
+    - zone
+    type: object
   utils.DatabaseConfig:
     properties:
       nodeName:
@@ -2606,9 +2906,32 @@ definitions:
     type: object
   utils.HTTPConfig:
     properties:
+      AdvertisedAddress:
+        description: |-
+          AdvertisedAddress is what the DNS records of this node point at: empty for
+          the detected public IP, "iface:<name>" for a network interface, or an IPv4
+        type: string
       DNSChallengeConfig:
         additionalProperties:
           type: string
+        type: object
+      DNSZones:
+        items:
+          $ref: '#/definitions/utils.DNSZoneConfig'
+        type: array
+      LocalCerts:
+        additionalProperties:
+          $ref: '#/definitions/utils.ZoneCert'
+        description: |-
+          LocalCerts are the certificates this server gets by itself over HTTP-01,
+          one per domain, keyed by LocalCertZone. Never shared: each server
+          validates its own hostnames.
+        type: object
+      SSLEmailShared:
+        type: boolean
+      ZoneCerts:
+        additionalProperties:
+          $ref: '#/definitions/utils.ZoneCert'
         type: object
       acceptAllInsecureHostname:
         type: boolean
@@ -2665,6 +2988,11 @@ definitions:
       selfTLSValidUntil:
         type: string
       sslemail:
+        description: |-
+          SSLEmail is the contact of the Let's Encrypt certificates. One for the
+          whole cluster, whichever server issues: SSLEmailShared is set once the
+          cluster's value was received, a server's own one from before is offered
+          to the cluster until then.
         type: string
       tlscert:
         type: string
@@ -2708,6 +3036,26 @@ definitions:
         items:
           type: string
         type: array
+    type: object
+  utils.HostCertificate:
+    properties:
+      covered:
+        description: Covered is false when the certificate served does not list the
+          hostname
+        type: boolean
+      hosts:
+        items:
+          type: string
+        type: array
+      source:
+        description: |-
+          Source is "zone", "node" (this node's own Let's Encrypt certificate),
+          "selfsigned", "provided" or "none" (HTTPS disabled)
+        type: string
+      validUntil:
+        type: string
+      zone:
+        type: string
     type: object
   utils.LocationRemoteStorageConfig:
     properties:
@@ -3039,11 +3387,26 @@ definitions:
     - nickname
     - role
     type: object
+  utils.ZoneCert:
+    properties:
+      IssuedBy:
+        type: string
+      hosts:
+        items:
+          type: string
+        type: array
+      tlscert:
+        type: string
+      tlskey:
+        type: string
+      validUntil:
+        type: string
+    type: object
 info:
   contact: {}
   description: REST API for Cosmos Cloud server management
   title: Cosmos Server API
-  version: 0.24.0-unstable012
+  version: 0.24.0-unstable030
 paths:
   /_logs:
     get:
@@ -4128,6 +4491,146 @@ paths:
       summary: List recent builds across CI projects
       tags:
       - ci
+  /api/constellation/ci/connections:
+    get:
+      description: Returns every git connection (shared credentials) with its token
+        redacted and the projects using it (Pro feature)
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: List git connections
+      tags:
+      - ci
+    post:
+      consumes:
+      - application/json
+      description: |-
+        Stores a set of git credentials (provider, host, token) that projects can share
+        instead of carrying their own token (Pro feature).
+      parameters:
+      - description: Connection to create
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/pro.CIGitConnection'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Create a git connection
+      tags:
+      - ci
+  /api/constellation/ci/connections/{name}:
+    delete:
+      description: Removes the connection. Refused while a project uses it (Pro feature)
+      parameters:
+      - description: Connection name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete a git connection
+      tags:
+      - ci
+    get:
+      description: Returns the connection with its token redacted and the projects
+        using it (Pro feature)
+      parameters:
+      - description: Connection name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Get one git connection
+      tags:
+      - ci
+    put:
+      consumes:
+      - application/json
+      description: |-
+        Replaces the connection. An empty token keeps the stored one (write-only).
+        Every project on the connection uses the new credentials from its next build (Pro feature).
+      parameters:
+      - description: Connection name
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: Connection to store
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/pro.CIGitConnection'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Update a git connection
+      tags:
+      - ci
+  /api/constellation/ci/connections/{name}/repos:
+    get:
+      description: |-
+        Asks the provider which repositories the connection's token can access, most recently
+        updated first, and filters them by ?q=. Plain git connections cannot list (Pro feature).
+      parameters:
+      - description: Connection name
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: Filter on the repository name
+        in: query
+        name: q
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: List the repositories a git connection can reach
+      tags:
+      - ci
   /api/constellation/ci/detect:
     post:
       consumes:
@@ -4347,8 +4850,9 @@ paths:
       - ci
   /api/constellation/ci/projects/{name}/builds/{number}:
     delete:
-      description: 'Removes the build record and its logs. Refused while the build
-        is queued or running: cancel it first (Pro feature).'
+      description: |-
+        Removes the build record, its logs and its stored artifacts. Refused while the build is
+        queued or running: cancel it first (Pro feature).
       parameters:
       - description: CI project name
         in: path
@@ -4373,8 +4877,9 @@ paths:
       tags:
       - ci
     get:
-      description: Returns the build with its trigger, steps, artifacts and deploy
-        result (Pro feature)
+      description: |-
+        Returns the build with its trigger, its own steps (prepare, deploy), its jobs with their
+        steps and artifacts, and the deploy result (Pro feature)
       parameters:
       - description: CI project name
         in: path
@@ -4452,6 +4957,10 @@ paths:
         name: number
         required: true
         type: integer
+      - description: 'Job name (empty: the build''s own steps)'
+        in: query
+        name: job
+        type: string
       - description: Step index
         in: query
         name: step
@@ -4470,6 +4979,37 @@ paths:
       security:
       - BearerAuth: []
       summary: Read the logs of a build step
+      tags:
+      - ci
+  /api/constellation/ci/projects/{name}/copy:
+    post:
+      consumes:
+      - application/json
+      description: |-
+        Copies the chosen sets (secrets, build env, runtime env) of the source project onto this one.
+        Same-named entries are replaced, the others kept. Secret values never leave the server (Pro feature).
+      parameters:
+      - description: Project name (destination)
+        in: path
+        name: name
+        required: true
+        type: string
+      - description: What to copy and from where
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/pro.CICopyRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Copy secrets and environment variables from another CI project
       tags:
       - ci
   /api/constellation/ci/projects/{name}/webhook/{action}:
@@ -4504,8 +5044,9 @@ paths:
       - ci
   /api/constellation/ci/runners:
     get:
-      description: Returns every node with its running builds and buildkitd state
-        (Pro feature)
+      description: |-
+        Returns every node with its running jobs, buildkitd state, architecture and the
+        platforms it can build for (native and emulated) (Pro feature)
       produces:
       - application/json
       responses:
@@ -7235,6 +7776,68 @@ paths:
       summary: Upgrade a managed SeaweedFS instance
       tags:
       - seaweedfs
+  /api/constellation/state:
+    get:
+      description: |-
+        Returns record counts per bucket as held by the on-disk state mirror (backup.cosmos-state.json),
+        when it was written, whether a reform reseed is pending and whether an import is marked in
+        progress (which freezes the scheduler). Pro feature.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Get the Pro state mirror summary
+      tags:
+      - state
+  /api/constellation/state/import:
+    post:
+      consumes:
+      - application/json
+      description: |-
+        Body is a state file as produced by the export. Writes every record that does not already
+        exist and leaves existing ones untouched; never creates containers or touches quarantine
+        state. Returns created/present counts per bucket. Pro feature.
+      parameters:
+      - description: State file
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/pro.ProState'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Import a Pro state file
+      tags:
+      - state
+  /api/constellation/state/start-empty:
+    post:
+      description: |-
+        Removes the import-in-progress marker left by a failed import or reseed, accepting the
+        deployments bucket as it is and letting the scheduler reconcile again. Pro feature.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Clear a frozen state import
+      tags:
+      - state
   /api/constellation/tag-nodes:
     get:
       description: |-
@@ -7763,14 +8366,22 @@ paths:
       - system
   /api/force-server-update:
     post:
-      description: Triggers a manual check for available server updates
+      description: Checks container images and the server release feed now, regardless
+        of the auto-update setting. Returns the server version comparison; when a
+        newer server release exists it is downloaded and the server restarts to install
+        it.
       produces:
       - application/json
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/utils.APIResponse'
+            allOf:
+            - $ref: '#/definitions/utils.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/main.ServerUpdateCheck'
+              type: object
         "401":
           description: Unauthorized
           schema:
@@ -7781,6 +8392,10 @@ paths:
             $ref: '#/definitions/utils.HTTPErrorResult'
         "405":
           description: Method Not Allowed
+          schema:
+            $ref: '#/definitions/utils.HTTPErrorResult'
+        "500":
+          description: Internal Server Error
           schema:
             $ref: '#/definitions/utils.HTTPErrorResult'
       security:
@@ -9991,6 +10606,40 @@ paths:
       summary: One-shot server provisioning
       tags:
       - system
+  /api/setup-join:
+    post:
+      consumes:
+      - application/json
+      description: 'Replaces the whole setup for a server added to a cluster: the
+        constellation file gives the server its identity and its hostname (<device>.<cluster
+        domain>, or the one given), users, zones and certificates are then replicated
+        from the cluster. The server restarts once done. Only available when the server
+        is in NewInstall mode.'
+      parameters:
+      - description: Constellation file and optional hostname
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/main.SetupJoinJSON'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.HTTPErrorResult'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/utils.HTTPErrorResult'
+      summary: Set a new server up by joining an existing Constellation
+      tags:
+      - system
   /api/shield/bans:
     get:
       description: Returns every client with a strike or ban history on this node
@@ -10692,6 +11341,147 @@ paths:
       summary: Create a new Docker volume
       tags:
       - docker
+  /api/zones:
+    get:
+      description: 'Lists every zone: the explicit ones, and one derived zone per
+        hostname no explicit zone covers. Each zone comes with its hostnames (cluster-wide)
+        and the certificate each hostname is served with. DNS provider credentials
+        are only included with the credentials permission.'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/configapi.ZonesResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.HTTPErrorResult'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/utils.HTTPErrorResult'
+      security:
+      - BearerAuth: []
+      summary: List the DNS zones
+      tags:
+      - zones
+  /api/zones-addresses:
+    get:
+      description: 'Lists the choices for HTTPConfig.AdvertisedAddress, the address
+        the managed DNS records of this server point at: the detected public IP (empty
+        value, the default), each network interface (iface:<name>, for a server published
+        on its LAN), with the address each one currently resolves to.'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/configapi.AdvertisedAddressesResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.HTTPErrorResult'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/utils.HTTPErrorResult'
+      security:
+      - BearerAuth: []
+      summary: List the addresses this server can advertise
+      tags:
+      - zones
+  /api/zones/{zone}:
+    delete:
+      description: Deletes the explicit zone. Its hostnames fall back to the next
+        matching zone, or to a derived zone each. Replicated to the whole Constellation.
+      parameters:
+      - description: Zone name
+        in: path
+        name: zone
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.HTTPErrorResult'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/utils.HTTPErrorResult'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/utils.HTTPErrorResult'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/utils.HTTPErrorResult'
+      security:
+      - BearerAuth: []
+      summary: Delete a DNS zone
+      tags:
+      - zones
+    put:
+      consumes:
+      - application/json
+      description: Creates the explicit zone, or replaces it. A zone is a domain with
+        its HTTPS setup (certificate mode, DNS challenge provider, wildcard) and its
+        DynDNS setup. Every hostname under the domain uses it, unless a longer zone
+        matches. The certificate mode is LETSENCRYPT, SELFSIGNED, PROVIDED (TLSCert
+        and TLSKey in PEM format) or DISABLED (plain HTTP), and no server-wide mode
+        overrides it. Replicated to the whole Constellation. Credentials sent empty
+        by a client without the credentials permission keep their current value, and
+        so does the private key of a provided certificate, which is never returned.
+      parameters:
+      - description: Zone name, e.g. example.com
+        in: path
+        name: zone
+        required: true
+        type: string
+      - description: Zone configuration
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/utils.DNSZoneConfig'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/utils.APIResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/utils.HTTPErrorResult'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/utils.HTTPErrorResult'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/utils.HTTPErrorResult'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/utils.HTTPErrorResult'
+      security:
+      - BearerAuth: []
+      summary: Create or replace a DNS zone
+      tags:
+      - zones
   /logo:
     get:
       description: Returns the Cosmos server logo as a PNG image

@@ -283,12 +283,26 @@ type HTTPConfig struct {
 	ProxyConfig ProxyConfig
 	Hostname string `validate:"required,excludesall=0x2C/ "`
 	AllowHTTPLocalIPAccess bool `validate:"omitempty"`
+	// SSLEmail is the contact of the Let's Encrypt certificates. One for the
+	// whole cluster, whichever server issues: SSLEmailShared is set once the
+	// cluster's value was received, a server's own one from before is offered
+	// to the cluster until then.
 	SSLEmail string `validate:"omitempty,email"`
+	SSLEmailShared bool `json:"SSLEmailShared,omitempty"`
 	UseWildcardCertificate bool
 	OverrideWildcardDomains string `validate:"omitempty,excludesall=/ "`
 	AcceptAllInsecureHostname bool
 	DNSChallengeConfig map[string]string `json:"DNSChallengeConfig,omitempty"`
 	DNSChallengeResolvers string
+	DNSZones []DNSZoneConfig `json:"DNSZones,omitempty"`
+	ZoneCerts map[string]ZoneCert `json:"ZoneCerts,omitempty"`
+	// LocalCerts are the certificates this server gets by itself over HTTP-01,
+	// one per domain, keyed by LocalCertZone. Never shared: each server
+	// validates its own hostnames.
+	LocalCerts map[string]ZoneCert `json:"LocalCerts,omitempty"`
+	// AdvertisedAddress is what the DNS records of this node point at: empty for
+	// the detected public IP, "iface:<name>" for a network interface, or an IPv4
+	AdvertisedAddress string `json:"AdvertisedAddress,omitempty"`
 	UseForwardedFor bool
 	AllowSearchEngine bool
 	PublishMDNS bool
@@ -519,8 +533,15 @@ type MarketSource struct {
 
 type ConstellationConfig struct {
 	Enabled bool
+	// ClusterDomain is the domain servers joining with a constellation file get
+	// their hostname under (<device>.<domain>). Empty: the zone of this server's hostname.
+	ClusterDomain string `json:"ClusterDomain,omitempty"`
 	DoNotSyncNodes bool
 	DNSDisabled bool
+	// DoNotUseConstellationDNSOnHost keeps the resolver of this server as it is.
+	// Unset, the server uses the Constellation DNS on Pro and keeps its own
+	// resolver on the community edition (see UseConstellationDNSOnHost).
+	DoNotUseConstellationDNSOnHost *bool `json:"DoNotUseConstellationDNSOnHost,omitempty"`
 	DNSPort string
 	DNSFallback string
 	DNSBlockBlacklist bool
