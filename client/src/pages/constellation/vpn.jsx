@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import * as API from "../../api";
-import AddDeviceModal from "./addDevice";
+import AddDeviceModal, { haManagerCount } from "./addDevice";
 import PrettyTableView from "../../components/tableView/prettyTableView";
 import { DeleteButton } from "../../components/delete";
 import { ApiOutlined, CloudOutlined, CloudServerOutlined, CompassOutlined, DesktopOutlined, DownOutlined, EditOutlined, ExportOutlined, LaptopOutlined, MobileOutlined, NodeIndexOutlined, QuestionCircleOutlined, SyncOutlined, TabletOutlined, UpOutlined } from "@ant-design/icons";
@@ -493,6 +493,9 @@ export const ConstellationVPN = ({ freeVersion }) => {
                   </Stack>
                   <Typography variant="caption" color="textSecondary"
                     sx={{ display: { xs: natsExpanded ? 'block' : 'none', md: 'block' } }}>{caption}</Typography>
+                  {natsInfo.haMode && devices && haManagerCount(devices) < 3 && (
+                    <Alert severity="warning">{t('mgmt.constellation.nats.haMissingManagers', { managers: haManagerCount(devices) })}</Alert>
+                  )}
                 </Stack>
               );
             })()}
@@ -593,7 +596,10 @@ export const ConstellationVPN = ({ freeVersion }) => {
                     variant="outlined"
                     color="error"
                     label={t('mgmt.constellation.forceReformLabel')}
-                    content={t('mgmt.constellation.forceReformText')}
+                    content={<>
+                      {t('mgmt.constellation.forceReformText')}
+                      {proFeatures.ReformStateNotice && <proFeatures.ReformStateNotice />}
+                    </>}
                     callback={async () => {
                       await API.constellation.forceReform();
                       refreshConfig();
@@ -835,7 +841,7 @@ export const ConstellationVPN = ({ freeVersion }) => {
             data={devices.filter((d) => !d.blocked)}
             getKey={(r) => r.deviceName}
             buttons={[
-              (<AddDeviceModal users={users} config={config} refreshConfig={refreshConfig} devices={devices} canCreateManager={canCreateManager} canCreateAgent={canCreateAgent} />),
+              (<AddDeviceModal users={users} config={config} refreshConfig={refreshConfig} devices={devices} natsHA={!!(natsInfo && natsInfo.haMode)} canCreateManager={canCreateManager} canCreateAgent={canCreateAgent} />),
               <Button
                 disableElevation
                 variant="outlined"

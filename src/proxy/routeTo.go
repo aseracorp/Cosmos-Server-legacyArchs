@@ -117,8 +117,9 @@ func NewProxy(targetHost string, AcceptInsecureHTTPSTarget bool, DisableHeaderHa
 		// never leak a node API key to a backend; the tunnel director re-adds it for constellation hops
 		req.Header.Del("x-cstln-auth")
 
+		// the scheme the hostname is served with, which its zone can make plain HTTP
 		originalScheme := "http"
-		if utils.IsHTTPS {
+		if utils.HostServedOverHTTPS(req.Host) {
 			originalScheme = "https"
 		}
 		
@@ -317,9 +318,12 @@ func TunnelRouteTo(tunnel utils.ConstellationTunnel, lb *TunnelLoadBalancer) htt
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Header.Get(TunnelLBForwardedHeader) != "" {
 			r.Header.Del(TunnelLBForwardedHeader)
-			// only trust the marker from another constellation node
+			// only trust the marker from another constellation node, or from
+			// loopback: a ":<port>" route re-enters through the socket proxy, so
+			// a peer's hop shows up as 127.0.0.1 (spoofing it only skips the LB)
 			remoteAddr, _ := utils.SplitIP(r.RemoteAddr)
-			if constellation.IsConstellationIP(remoteAddr) {
+			ip := net.ParseIP(remoteAddr)
+			if constellation.IsConstellationIP(remoteAddr) || (ip != nil && ip.IsLoopback()) {
 				if selfHandler == nil {
 					http.Error(w, "No local tunnel target available", http.StatusBadGateway)
 					return

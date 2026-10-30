@@ -20,6 +20,8 @@ import createRegistryAPI from '../../client/src/api/registry';
 import createFunctionsAPI from '../../client/src/api/functions';
 import createCIAPI from '../../client/src/api/ci';
 import createShieldAPI from '../../client/src/api/shield';
+import createZonesAPI from '../../client/src/api/zones';
+import createStateAPI from '../../client/src/api/state';
 import wrap from '../../client/src/api/wrap';
 
 export interface SetupRequest {
@@ -67,6 +69,8 @@ export function createClient({ baseUrl, token }: { baseUrl: string; token: strin
     functions: createFunctionsAPI(apiFetch),
     ci: createCIAPI(apiFetch),
     shield: createShieldAPI(apiFetch),
+    zones: createZonesAPI(apiFetch),
+    state: createStateAPI(apiFetch),
 
     setup: (request: SetupRequest) => {
       return wrap(apiFetch('/cosmos/api/setup', {
