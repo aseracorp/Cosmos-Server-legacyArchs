@@ -162,9 +162,9 @@ func findServerUpdate(useBeta bool) (ServerUpdateCheck, *VersionInfo, error) {
 
 // applyServerUpdate downloads the release next to the binary and exits so the launcher installs it.
 func applyServerUpdate(updates *VersionInfo, useBeta bool) error {
-	url := updates.AMDURL
-	if runtime.GOARCH == "arm64" {
-		url = updates.ARMURL
+	url := updates.ArchUpdateURL()
+	if url == "" {
+		return fmt.Errorf("no update asset found for architecture %s", runtime.GOARCH)
 	}
 
 	utils.Log("Downloading update from " + url)
