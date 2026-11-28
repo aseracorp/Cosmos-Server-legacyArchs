@@ -530,6 +530,7 @@ const DockerComposeImport = ({ refresh, dockerComposeInit, installerInit, defaul
   const [context, setContext] = useState({});
   const [installer, setInstaller] = useState(installerInit);
   const [config, setConfig] = useState({});
+  const [rootProtocol, setRootProtocol] = useState('https');
   const [envContent, setEnvContent] = useState('');
   const [detectedEnvVars, setDetectedEnvVars] = useState([]);
 
@@ -627,6 +628,7 @@ const DockerComposeImport = ({ refresh, dockerComposeInit, installerInit, defaul
 
   function refreshConfig() {
     API.config.get().then((res) => {
+      setRootProtocol(res.isHTTPS === false ? 'http' : 'https');
       setConfig(res.data);
     });
   }
@@ -679,7 +681,7 @@ const DockerComposeImport = ({ refresh, dockerComposeInit, installerInit, defaul
         CPU_AVX: API.CPU_AVX,
         DefaultDataPath: (config && config.DockerConfig && config.DockerConfig.DefaultDataPath) || "/cosmos-storage",
         RootHostname: (config && config.HTTPConfig && config.HTTPConfig.Hostname) || window.location.hostname,
-        RootProtocol: (config && config.HTTPConfig && config.HTTPConfig.HTTPSCertificateMode === "DISABLED") ? "http" : "https",
+        RootProtocol: rootProtocol,
       });
 
       console.log('rendered', rendered);
@@ -838,7 +840,7 @@ const DockerComposeImport = ({ refresh, dockerComposeInit, installerInit, defaul
       setYmlError(e.message);
       return;
     }
-  }, [openModal, dockerCompose, serviceName, hostnames, overrides, installer, config, envContent]);
+  }, [openModal, dockerCompose, serviceName, hostnames, overrides, installer, config, rootProtocol, envContent]);
 
   const openModalFunc = () => {
     setOpenModal(true);
